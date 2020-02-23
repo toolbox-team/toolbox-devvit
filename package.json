@@ -1,0 +1,29 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/*"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint src/**/*.ts",
+    "lint-fix": "eslint --fix src/**/*.ts",
+    "prepublishOnly": "eslint src/**/*.ts && tsc"
+  },
+  "repository": "",
+  "author": "Geo1088 <georgej1088@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "@geo1088/eslint-config-ts": "^2.0.0",
+    "@types/node": "^13.7.4",
+    "eslint": "^6.8.0",
+    "typescript": "^3.8.2"
+  }
+}
