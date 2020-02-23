@@ -1,0 +1,65 @@
+name: Generate development build
+
+on:
+  push:
+    # Don't generate builds for other builds!
+    branches-ignore:
+      - "builds/**"
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install dependencies
+      run: yarn install
+    - name: Build Typescript
+      run: yarn run build
+    - name: Push build artifacts
+      env:
+        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+      run: |
+        # Find current branch name from GITHUB_REF and prepend builds/ for new name
+        BUILDS_BRANCH_NAME="builds/${GITHUB_REF#refs/heads/}"
+        echo "Pushing artifacts to branch $BUILDS_BRANCH_NAME"
+
+        # Create another clone of the repository in a temporary directory
+        git clone "$(git remote get-url origin)" .temp
+        cd .temp
+
+        # Checkout the builds branch, or create one if it doesn't exist yet
+        git checkout "$BUILDS_BRANCH_NAME" || git checkout --orphan "$BUILDS_BRANCH_NAME"
+        # When creating a new branch, the whole working directory is added by default, but we don't want that
+        git reset
+        # We also have to pull changes from the remote if possible
+        git pull || true
+
+        # Move build artifacts and metadata into this new directory, including files always included in npm packages per https://docs.npmjs.com/files/package.json#files
+        cp -r ../dist .
+        cp ../package.json .
+        cp ../LICENSE .
+        cp ../README.md .
+
+        # Check for working directory changes; if there's nothing, exit early
+        if git diff-index --quiet HEAD --; then
+          exit 0
+        fi
+
+        # Add files to git
+        git add -f dist/** package.json LICENSE README.md
+
+        # Commit
+        git config user.name "Build Bot"
+        git config user.email "build-bot@github-actions"
+        git commit -m "Build of ${GITHUB_SHA:0:7}"
+
+        # Convert remote URL from HTTPS to SSH format so we can use our deploy key
+        git remote set-url origin "$(git remote get-url origin | sed 's#http.*com/#git@github.com:#g')"
+
+        # Push the commit to the origin
+        eval `ssh-agent -t 60 -s`
+        echo "$DEPLOY_KEY" | ssh-add -
+        mkdir -p ~/.ssh/
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+        git push || git push --set-upstream origin "$BUILDS_BRANCH_NAME"
+        ssh-agent -k
