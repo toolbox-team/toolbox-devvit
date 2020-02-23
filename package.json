@@ -1,7 +1,7 @@
 {
-  "name": "",
+  "name": "toolbox-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Helpers for interfacing with Reddit Moderator Toolbox settings and usernotes.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -13,13 +13,13 @@
     "lint-fix": "eslint --fix src/**/*.ts",
     "prepublishOnly": "eslint src/**/*.ts && tsc"
   },
-  "repository": "",
+  "repository": "https://github.com/Geo1088/toolbox-api.git",
   "author": "Geo1088 <georgej1088@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/Geo1088/toolbox-api/issues"
   },
-  "homepage": "",
+  "homepage": "https://github.com/Geo1088/toolbox-api#readme",
   "devDependencies": {
     "@geo1088/eslint-config-ts": "^2.0.0",
     "@types/node": "^13.7.4",

@@ -1,14 +1,14 @@
-# Project Name
+# toolbox-api
 
-Description
+Helpers for interfacing with Reddit Moderator Toolbox settings and usernotes.
 
 ## Installation
 
 ```bash
 # With Yarn:
-$ yarn add --production
+$ yarn add --production https://github.com/Geo1088/toolbox-api.git
 # With npm:
-$ npm install --save --production
+$ npm install --save --production https://github.com/Geo1088/toolbox-api.git
 ```
 
 ## Usage
