@@ -61,3 +61,7 @@ test('expandPermalink', t => {
 		t.is(expandPermalink(arg), expected);
 	}
 });
+
+test.todo('migrateUsernotesSchema');
+
+test.todo('UsernotesData stuff');
