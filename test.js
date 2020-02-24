@@ -30,6 +30,8 @@ test('squashPermalink', t => {
 		'https://old.reddit.com/r/subreddit/comments/123abc/some_link_slug/?trailing#garbage': 'l,123abc',
 		'https://old.reddit.com/comments/123abc': 'l,123abc',
 		'https://old.reddit.com/comments/123abc/some_link_slug/?trailing#garbage': 'l,123abc',
+		'https://redd.it/123abc': 'l,123abc',
+		'https://redd.it/123abc/?trailing#garbage': 'l,123abc',
 		// Old modmail links
 		'https://www.reddit.com/r/subreddit/message/messages/123abc': 'm,123abc',
 		'https://www.reddit.com/r/subreddit/message/messages/123abc/?trailing#garbage': 'm,123abc',
