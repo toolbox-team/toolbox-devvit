@@ -191,7 +191,7 @@ export class UsernotesData {
 		}
 		const newNote: RawUsernote = {
 			n: text,
-			t: Date.now() / 1000,
+			t: Math.round(Date.now() / 1000),
 		};
 		if (link) {
 			newNote.l = squashPermalink(link);
