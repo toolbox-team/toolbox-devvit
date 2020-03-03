@@ -173,7 +173,8 @@ export class UsernotesData {
 
 	users: RawUsernotesUsers;
 
-	constructor (data: any) {
+	constructor (jsonString: string) {
+		let data = JSON.parse(jsonString);
 		data = migrateUsernotesToLatestSchema(data);
 		this.users = decompressBlob(data.blob);
 		this.constants = data.constants;
