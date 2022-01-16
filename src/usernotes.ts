@@ -197,7 +197,7 @@ export class UsernotesData {
 		if (link) {
 			newNote.l = squashPermalink(link);
 		}
-		this.users[username].ns.push(newNote);
+		this.users[username].ns.unshift(newNote);
 	}
 
 	/**
