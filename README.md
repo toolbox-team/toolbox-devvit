@@ -31,7 +31,7 @@ usernotes.addUsernote('someone', 'wears the freshest clothes');
 usernotes.users['someone'].ns[0].n += '... or do they?';
 
 // Get all the usernotes for a user, with more helpful object keys
-usernotes.notesForUser('geo1088')
+usernotes.notesForUser('someone')
 //=> [
 //     {
 //       text: 'wears the freshest clothes... or do they?',
