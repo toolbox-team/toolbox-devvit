@@ -4,13 +4,10 @@ Helpers for interfacing with Reddit Moderator Toolbox settings and usernotes.
 
 ## Installation
 
-This library is still under initial development, but dev builds are generated automatically and can be installed with the following commands:
+This library is still under initial development, but dev builds are generated automatically and can be installed from Github:
 
 ```bash
-# With Yarn:
-$ yarn add --production https://github.com/eritbh/toolbox-api.git#builds/main
-# With npm:
-$ npm install --save --production https://github.com/eritbh/toolbox-api.git#builds/main
+npm install --save --production https://github.com/eritbh/toolbox-api.git#builds/main
 ```
 
 ## Usage Example
