@@ -1,5 +1,5 @@
 {
-  "name": "toolbox-api",
+  "name": "@eritbh/toolbox-api",
   "version": "1.0.0",
   "description": "Helpers for interfacing with Reddit Moderator Toolbox settings and usernotes.",
   "main": "dist/index.js",

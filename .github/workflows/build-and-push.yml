@@ -14,11 +14,11 @@ jobs:
 
     - name: Install dependencies
       run: |
-        yarn install
+        npm ci
 
     - name: Build Typescript
       run: |
-        yarn run build
+        npm run build
 
     - name: Push build artifacts
       env:
