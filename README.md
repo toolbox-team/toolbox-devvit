@@ -8,9 +8,9 @@ This library is still under initial development, but dev builds are generated au
 
 ```bash
 # With Yarn:
-$ yarn add --production https://github.com/Geo1088/toolbox-api.git#builds/master
+$ yarn add --production https://github.com/eritbh/toolbox-api.git#builds/master
 # With npm:
-$ npm install --save --production https://github.com/Geo1088/toolbox-api.git#builds/master
+$ npm install --save --production https://github.com/eritbh/toolbox-api.git#builds/master
 ```
 
 ## Usage Example
@@ -52,4 +52,4 @@ JSON.stringify(usernotes)
 
 ## License
 
-[MIT &copy; Geo1088](/LICENSE)
+[MIT &copy; eritbh](/LICENSE)

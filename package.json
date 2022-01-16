@@ -15,13 +15,13 @@
     "lint-fix": "eslint --fix src/**/*.ts",
     "prepublishOnly": "eslint src/**/*.ts && tsc && ava"
   },
-  "repository": "https://github.com/Geo1088/toolbox-api.git",
-  "author": "Geo1088 <georgej1088@gmail.com>",
+  "repository": "https://github.com/eritbh/toolbox-api.git",
+  "author": "eritbh <github@eritbh.me>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Geo1088/toolbox-api/issues"
+    "url": "https://github.com/eritbh/toolbox-api/issues"
   },
-  "homepage": "https://github.com/Geo1088/toolbox-api#readme",
+  "homepage": "https://github.com/eritbh/toolbox-api#readme",
   "devDependencies": {
     "@geo1088/eslint-config-ts": "^2.0.0",
     "@types/node": "^13.7.4",
