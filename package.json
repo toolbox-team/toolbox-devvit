@@ -28,7 +28,7 @@
     "ava": "^5.1.0",
     "eslint": "^6.8.0",
     "nyc": "^15.0.0",
-    "typedoc": "^0.17.0-3",
+    "typedoc": "^0.23.21",
     "typescript": "^3.8.2"
   },
   "dependencies": {
