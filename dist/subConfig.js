@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DEFAULT_USERNOTE_TYPES = exports.EARLIEST_KNOWN_CONFIG_SCHEMA = exports.LATEST_KNOWN_CONFIG_SCHEMA = void 0;
 exports.LATEST_KNOWN_CONFIG_SCHEMA = 1;
 exports.EARLIEST_KNOWN_CONFIG_SCHEMA = 1;
 /** Default usernote types to use if subreddit config doesn't specify any */

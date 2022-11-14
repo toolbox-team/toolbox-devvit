@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.UsernotesData = exports.migrateUsernotesToLatestSchema = exports.decompressBlob = exports.compressBlob = exports.expandPermalink = exports.squashPermalink = exports.EARLIEST_KNOWN_USERNOTES_SCHEMA = exports.LATEST_KNOWN_USERNOTES_SCHEMA = void 0;
 const pako_1 = __importDefault(require("pako"));
 /**
  * The latest usernotes schema version that this library can handle. If a
