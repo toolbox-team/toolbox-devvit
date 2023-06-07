@@ -28,6 +28,12 @@ export interface RawUsernote {
 	l?: string;
 }
 
+/**
+ * A zlib-compressed, base64-encoded representation of an object. Retrieve the
+ * data by using {@linkcode decompressBlob}.
+ */
+export type RawUsernotesBlob<T> = string & {_contents?: T};
+
 /** Raw data for the object of all usernotes */
 export interface RawUsernotesUsers {
 	/** The username of a user */
@@ -52,7 +58,7 @@ export interface RawUsernotesData {
 	/** Constant data referenced by usernotes */
 	constants: RawUsernotesConstants;
 	/** A blob that, when decompressed, yields a {@linkcode RawUsernotesUsers} object */
-	blob: string;
+	blob: RawUsernotesBlob<RawUsernotesUsers>;
 }
 
 export interface PrettyUsernote {
@@ -115,7 +121,7 @@ export function expandPermalink (shortenedLink: string): string {
  * @param value The object or value to compress
  * @returns The generated blob.
  */
-export function compressBlob (value: any): string {
+export function compressBlob<T> (value: T): RawUsernotesBlob<T> {
 	return Buffer.from(pako.deflate(JSON.stringify(value))).toString('base64');
 }
 
@@ -126,7 +132,7 @@ export function compressBlob (value: any): string {
  * @param blob The blob to decompress
  * @returns The original JSON value.
  */
-export function decompressBlob (blob: string): any {
+export function decompressBlob<T> (blob: RawUsernotesBlob<T>): T {
 	return JSON.parse(pako.inflate(Buffer.from(blob, 'base64').toString('binary'), {to: 'string'}));
 }
 
