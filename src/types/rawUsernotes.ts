@@ -35,10 +35,18 @@ export interface RawUsernotesConstants {
 	warnings: (string | null)[];
 }
 
-/** Raw data stored as JSON on the `usernotes` wiki page */
+/**
+ * Raw data stored as JSON on the `usernotes` wiki page.
+ *
+ * Note that while the library supports upgrading older schemas to the current
+ * one (via {@linkcode migrateUsernotesToLatestSchema}), this type only applies
+ * to schema version 6. If you are manually reading data from the wiki without
+ * passing it through the migration function, and you read a different `ver`
+ * value, this type will not describe that data.
+ */
 export interface RawUsernotes {
-	/** The schema version this page is compatible with */
-	ver: number;
+	/** The version number of the usernotes schema this data conforms to */
+	ver: 6;
 	/** Constant data referenced by usernotes */
 	constants: RawUsernotesConstants;
 	/** A blob that, when decompressed, yields a {@linkcode RawUsernotesUsers} object */
