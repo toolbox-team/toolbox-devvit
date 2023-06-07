@@ -1,8 +1,9 @@
 import pako from 'pako';
 import {
+	RawUsernotes,
 	RawUsernotesBlob,
 	RawUsernotesConstants,
-	RawUsernotesData,
+	RawUsernotesNote,
 	RawUsernotesUsers,
 } from './types/rawUsernotes';
 
@@ -102,7 +103,7 @@ export function decompressBlob<T> (blob: RawUsernotesBlob<T>): T {
  * @param data The usernotes data read
  * @returns Data object updated to latest schema version
  */
-export function migrateUsernotesToLatestSchema (data: any): RawUsernotesData {
+export function migrateUsernotesToLatestSchema (data: any): RawUsernotes {
 	if (data.ver < EARLIEST_KNOWN_USERNOTES_SCHEMA) {
 		throw new TypeError(`Unknown schema version ${data.ver} (earliest known version is ${EARLIEST_KNOWN_USERNOTES_SCHEMA})`);
 	}
@@ -126,7 +127,7 @@ export function migrateUsernotesToLatestSchema (data: any): RawUsernotesData {
 			delete data.users;
 	}
 
-	return data as RawUsernotesData;
+	return data as RawUsernotes;
 }
 
 /**
@@ -155,7 +156,7 @@ export class UsernotesData {
 		if (!this.users[username]) {
 			this.users[username] = {ns: []};
 		}
-		const newNote: RawUsernote = {
+		const newNote: RawUsernotesNote = {
 			n: text,
 			t: Math.round(Date.now() / 1000),
 		};

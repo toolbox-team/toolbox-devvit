@@ -1,5 +1,5 @@
 /** Raw data for a single usernote */
-export interface RawUsernote {
+export interface RawUsernotesNote {
 	/** Timestamp (seconds since epoch) */
 	t?: number;
 	/** Note text */
@@ -23,7 +23,7 @@ export interface RawUsernotesUsers {
 	/** The username of a user */
 	[name: string]: {
 		/** A list of allnotes left on that user */
-		ns: RawUsernote[];
+		ns: RawUsernotesNote[];
 	};
 }
 
@@ -36,7 +36,7 @@ export interface RawUsernotesConstants {
 }
 
 /** Raw data stored as JSON on the `usernotes` wiki page */
-export interface RawUsernotesData {
+export interface RawUsernotes {
 	/** The schema version this page is compatible with */
 	ver: number;
 	/** Constant data referenced by usernotes */
