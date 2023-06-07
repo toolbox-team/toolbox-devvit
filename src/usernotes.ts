@@ -51,7 +51,7 @@ export interface RawUsernotesData {
 	ver: number;
 	/** Constant data referenced by usernotes */
 	constants: RawUsernotesConstants;
-	/** A blob that, when inflated, yields a {@link RawUsers} object */
+	/** A blob that, when decompressed, yields a {@linkcode RawUsernotesUsers} object */
 	blob: string;
 }
 
@@ -109,8 +109,8 @@ export function expandPermalink (shortenedLink: string): string {
 }
 
 /**
- * Compresses a JSON value into a zlib-compressed, base64 blob string. This
- * format is described here:
+ * Compresses a JSON value into a zlib-compressed, base64-encoded blob string.
+ * This format is described here:
  * {@link https://github.com/toolbox-team/reddit-moderator-toolbox/wiki/Subreddit-Wikis:-usernotes#working-with-the-blob}
  * @param value The object or value to compress
  * @returns The generated blob.
@@ -120,8 +120,8 @@ export function compressBlob (value: any): string {
 }
 
 /**
- * Decompresses a blob string into the JSON value used to create it. This format
- * is described here:
+ * Decompresses a {@linkcode RawUsernotesBlob} string into the JSON value it
+ * encodes. This format is described here:
  * {@link https://github.com/toolbox-team/reddit-moderator-toolbox/wiki/Subreddit-Wikis:-usernotes#working-with-the-blob}
  * @param blob The blob to decompress
  * @returns The original JSON value.
