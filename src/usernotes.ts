@@ -115,7 +115,7 @@ export function migrateUsernotesToLatestSchema (data: any): RawUsernotes {
 	switch (data.ver) {
 		case 4: // Migrate from 4 to 5
 			// Timestamps need to be converted from milliseconds to seconds
-			for (const user of Object.values(<RawUsernotesUsers>data.users)) {
+			for (const user of Object.values(data.users as RawUsernotesUsers)) {
 				for (const note of user.ns) {
 					if (note.t) note.t /= 1000;
 				}
