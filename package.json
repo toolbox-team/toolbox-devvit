@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/eritbh/toolbox-api#readme",
   "devDependencies": {
+    "@devvit/public-api": "^0.9.9",
     "@geo1088/eslint-config-ts": "^2.0.0",
     "@types/node": "^13.7.4",
     "ava": "^5.1.0",
