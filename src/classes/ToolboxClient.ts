@@ -24,7 +24,7 @@ const TB_USERNOTES_PAGE = 'usernotes';
  * 	name: 'Erin made a custom action',
  * 	description: 'Do something with this post',
  * 	handler: async (event, metadata) => {
- * 		const subreddit = await reddit.getCurrentSubreddit(metadata);
+ * 		const subreddit = (await reddit.getCurrentSubreddit(metadata)).name;
  * 		const user = event.post.author!;
  * 		const note = 'Hihi i am a note';
  *
