@@ -179,11 +179,29 @@ export class UsernotesData {
 		}));
 	}
 
-	toJSON () {
+	/**
+	 * Packs the usernotes data for writing back to the wiki. **This method
+	 * returns an object; you probably want {@linkcode toString} instead.**
+	 * @returns Object which can be serialized to JSON and written as the
+	 * contents of the `usernotes` wiki page
+	 */
+	toJSON (): RawUsernotes {
 		return {
 			ver: LATEST_KNOWN_USERNOTES_SCHEMA,
 			constants: this.constants,
 			blob: compressBlob(this.users),
 		};
+	}
+
+	/**
+	 * Packs the usernotes data for writing back to the wiki.
+	 * @param indent Passed as the third argument of `JSON.stringify`. Useful
+	 * for debugging; however, because wiki space is limited, never provide this
+	 * parameter when actually saving notes to the wiki.
+	 * @returns JSON string which can be saved as the contents of the
+	 * `usernotes` wiki page
+	 */
+	toString (indent?: string | number) {
+		return JSON.stringify(this, null, indent);
 	}
 }
