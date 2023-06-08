@@ -62,4 +62,4 @@ export interface UsernoteType {
     text: string;
 }
 /** Default usernote types to use if subreddit config doesn't specify any */
-export declare const DEFAULT_USERNOTE_TYPES: UsernoteType[];
+export declare const DEFAULT_USERNOTE_TYPES: readonly UsernoteType[];

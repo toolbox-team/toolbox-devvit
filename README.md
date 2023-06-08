@@ -1,44 +1,39 @@
-# toolbox-api
+# toolbox-devvit
 
-Helpers for interfacing with Reddit Moderator Toolbox settings and usernotes.
+Helpers for working with /r/toolbox data from Devvit community apps.
 
 ## Installation
 
 ```bash
-npm install --production @eritbh/toolbox-api
+npm install --production @eritbh/toolbox-devvit
 ```
 
 ## Usage Example
 
-```js
-const {UsernotesData} = require('toolbox-api');
+Install the library
 
-// Get your data however you want
-const data = '{"ver":6, ...}';
+```ts
+import {Devvit, RedditAPIClient, Context} from '@devvit/public-api';
+import {ToolboxClient} from '@eritbh/toolbox-devvit';
 
-// Create a UsernotesData instance
-const usernotes = new UsernotesData(data);
+const reddit = new RedditAPIClient();
+const toolbox = new ToolboxClient(reddit);
 
-// Add a usernote to a user
-usernotes.addUsernote('someone', 'wears the freshest clothes');
+// A simple action that creates a usernote on a post's author
+Devvit.addAction({
+	context: Context.POST,
+	name: 'Create Test Usernote',
+	description: 'Creates a Toolbox usernote for testing',
+	handler: async (event, metadata) => {
+		const subreddit = await reddit.getCurrentSubreddit(metadata);
+		const user = event.post.author!;
+		const note = 'Hihi i am a note';
+		await toolbox.createUsernote({subreddit, user, note}, metadata);
+		return {success: true, message: 'Note added!'};
+	}
+});
 
-// Directly modify the underlying usernote objects
-usernotes.users['someone'].ns[0].n += '... or do they?';
-
-// Get all the usernotes for a user, with more helpful object keys
-usernotes.notesForUser('someone')
-//=> [
-//     {
-//       text: 'wears the freshest clothes... or do they?',
-//       timestamp: 2020-03-03T02:13:10.042Z,
-//       link: undefined,
-//     },
-//     ...
-//   ]
-
-// Generate compressed JSON to write back to the wiki page
-JSON.stringify(usernotes)
-//=> '{"ver":6, ...}'
+export default Devvit;
 ```
 
 ## License
