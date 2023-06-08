@@ -1,2 +1,4 @@
-export * from './usernotes';
+export * from './helpers/usernotes';
+export * from './types/rawUsernotes';
+export * from './classes/UsernotesData';
 export * from './subConfig';
