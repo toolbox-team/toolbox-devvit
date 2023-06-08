@@ -68,7 +68,7 @@ export interface UsernoteType {
 }
 
 /** Default usernote types to use if subreddit config doesn't specify any */
-export const DEFAULT_USERNOTE_TYPES: UsernoteType[] = [
+export const DEFAULT_USERNOTE_TYPES: readonly UsernoteType[] = [
 	{key: 'gooduser', color: 'green', text: 'Good Contributor'},
 	{key: 'spamwatch', color: 'fuchsia', text: 'Spam Watch'},
 	{key: 'spamwarn', color: 'purple', text: 'Spam Warning'},
