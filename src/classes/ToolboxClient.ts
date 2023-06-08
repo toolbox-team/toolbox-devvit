@@ -72,7 +72,7 @@ export class ToolboxClient {
 		note: string;
 		link?: string;
 		reason?: string;
-	}, metadata: Metadata): Promise<void> {
+	}, metadata: Metadata | undefined): Promise<void> {
 		const page = await this.reddit.getWikiPage(subreddit, TB_USERNOTES_PAGE, metadata);
 		const notes = new UsernotesData(page.content);
 		notes.addUsernote(user, note, link);
