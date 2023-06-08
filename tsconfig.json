@@ -9,7 +9,10 @@
 		"declaration": true,
 		"noImplicitAny": false,
 		"strictNullChecks": true,
-		"strict": true
+		"strict": true,
+
+		// devvit types do not like being observed in this context
+		"skipLibCheck": true
 	},
 	"include": [
 		"src"
