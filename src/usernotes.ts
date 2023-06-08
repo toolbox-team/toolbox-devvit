@@ -100,7 +100,8 @@ export function decompressBlob<T> (blob: RawUsernotesBlob<T>): T {
  * Checks the schema version of raw usernotes data and attempts to update it to
  * the latest known schema version if it's out of date. Throws an error if the
  * data's current schema version is too old or new to handle.
- * @param data The usernotes data read
+ * @param data The usernotes data object read from the wiki, as an object (i.e.
+ * you should parse the page contents as JSON to pass into this function)
  * @returns Data object updated to latest schema version
  */
 export function migrateUsernotesToLatestSchema (data: any): RawUsernotes {
@@ -131,8 +132,11 @@ export function migrateUsernotesToLatestSchema (data: any): RawUsernotes {
 }
 
 /**
- * A class for interfacing with a subreddit's usernotes. Includes methods that
- * handle blob compression, note permalink squashing, etc.
+ * A class that interfaces with the raw contents of a subreddit's `usernotes`
+ * wiki page, automatically upgrading old storage schemas to the current
+ * version, providing methods to retrieve, update, add, and delete notes, and
+ * methods to repack notes back into the raw form for writing back to the wiki
+ * after modification.
  */
 export class UsernotesData {
 	constants: RawUsernotesConstants;
