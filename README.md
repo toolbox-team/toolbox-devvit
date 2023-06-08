@@ -1,4 +1,4 @@
-# toolbox-devvit
+# toolbox-devvit [![npm version](https://img.shields.io/npm/v/@eritbh/toolbox-devvit.svg)](https://www.npmjs.com/package/@eritbh/toolbox-devvit)
 
 Helpers for working with /r/toolbox data from Devvit community apps.
 
@@ -9,8 +9,6 @@ npm install --production @eritbh/toolbox-devvit
 ```
 
 ## Usage Example
-
-Install the library
 
 ```ts
 import {Devvit, RedditAPIClient, Context} from '@devvit/public-api';
