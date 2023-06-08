@@ -1,3 +1,4 @@
+import pako from 'pako';
 import {
 	RawUsernotes,
 	RawUsernotesBlob,
