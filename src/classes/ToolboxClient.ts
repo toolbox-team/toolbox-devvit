@@ -13,7 +13,7 @@ const TB_USERNOTES_PAGE = 'usernotes';
  * @example
  * ```ts
  * import {Devvit, RedditAPIClient, Context} from '@devvit/public-api';
- * import {ToolboxClient} from '@eritbh/toolbox-api';
+ * import {ToolboxClient} from '@eritbh/toolbox-devvit';
  *
  * const reddit = new RedditAPIClient();
  * const toolbox = new ToolboxClient(reddit);
@@ -80,7 +80,7 @@ export class ToolboxClient {
 			subredditName: subreddit,
 			page: TB_USERNOTES_PAGE,
 			content: notes.toString(),
-			reason: reason || `create new note on user ${user} via @eritbh/toolbox-api`,
+			reason: reason || `create new note on user ${user} via community app`,
 		}, metadata);
 	}
 }

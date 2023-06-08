@@ -1,3 +1,0 @@
-extends: "@geo1088/ts"
-rules:
-  valid-jsdoc: [1, {requireParamType: false, requireReturnType: false, requireReturn: false}]
