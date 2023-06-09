@@ -15,7 +15,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./helpers/usernotes"), exports);
-__exportStar(require("./types/rawUsernotes"), exports);
-__exportStar(require("./classes/UsernotesData"), exports);
+__exportStar(require("./types/RawUsernotes"), exports);
+__exportStar(require("./classes/Usernotes"), exports);
 __exportStar(require("./classes/ToolboxClient"), exports);
-__exportStar(require("./subConfig"), exports);
+// export * from './subConfig';

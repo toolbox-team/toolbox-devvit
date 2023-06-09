@@ -1,4 +1,4 @@
-import { RawUsernotes, RawUsernotesBlob } from '../types/rawUsernotes';
+import { RawUsernotes, RawUsernotesBlob } from '../types/RawUsernotes';
 /**
  * The latest usernotes schema version that this library can handle. If a
  * usernotes page reports a schema version higher than this number, it can't be

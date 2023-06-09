@@ -1,4 +1,5 @@
 "use strict";
+// this is old and broken but i will fix it up soon i promise
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DEFAULT_USERNOTE_TYPES = exports.EARLIEST_KNOWN_CONFIG_SCHEMA = exports.LATEST_KNOWN_CONFIG_SCHEMA = void 0;
 exports.LATEST_KNOWN_CONFIG_SCHEMA = 1;
