@@ -1,6 +1,6 @@
 {
   "name": "toolbox-devvit",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Helpers for working with /r/toolbox data from Devvit community apps.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
