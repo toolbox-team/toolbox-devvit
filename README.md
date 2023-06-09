@@ -1,6 +1,6 @@
 # toolbox-devvit [![npm version](https://img.shields.io/npm/v/@eritbh/toolbox-devvit.svg)](https://www.npmjs.com/package/@eritbh/toolbox-devvit)
 
-Helpers for working with /r/toolbox data from Devvit community apps.
+Helpers for working with /r/toolbox data from Devvit community apps. [Read the documentation.](https://toolbox-team.github.io/toolbox-devvit/)
 
 ## Installation
 
@@ -42,4 +42,4 @@ export default Devvit;
 
 ## License
 
-[MIT &copy; eritbh](/LICENSE)
+[MIT &copy; the toolbox team](/LICENSE)
