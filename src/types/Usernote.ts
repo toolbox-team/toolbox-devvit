@@ -8,7 +8,7 @@ export interface UsernoteInit {
 	timestamp?: Date;
 	/**
 	 * The username of the moderator who left the note, defaulting to the
-	 * current user
+	 * app user
 	 */
 	moderatorUsername?: string;
 	/**
@@ -24,8 +24,6 @@ export interface UsernoteInit {
 export interface Usernote extends UsernoteInit {
 	/** The date and time the note was left */
 	timestamp: Date;
-	/**
-	 * The username of the moderator who left the note
-	 */
+	/** The username of the moderator who left the note */
 	moderatorUsername: string;
 }

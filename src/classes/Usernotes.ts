@@ -12,12 +12,15 @@ import {
 	migrateUsernotesToLatestSchema,
 } from '../helpers/usernotes';
 
+// TODO: nothing here handles username case correctly; go back and check the
+//       toolbox implementation of that for correctness later and write test
+//       cases for it
+
 /**
  * A class that interfaces with the raw contents of a subreddit's `usernotes`
- * wiki page, automatically upgrading old storage schemas to the current
- * version, providing methods to retrieve, update, add, and delete notes, and
- * methods to repack notes back into the raw form for writing back to the wiki
- * after modification.
+ * wiki page, automatically upgrading old storage schemas to the current version
+ * and providing methods to manipulate and reserialize the notes back for
+ * writing back to the wiki.
  */
 export class Usernotes {
 	/** A mapping of usernames to notes on the given user. */
@@ -29,7 +32,6 @@ export class Usernotes {
 
 		for (const [username, {ns}] of Object.entries(rawUsers)) {
 			for (const rawNote of ns) {
-				// TODO: cased usernames handled incorrectly
 				let userNotes = this.users.get(username);
 				if (userNotes == null) {
 					userNotes = [];

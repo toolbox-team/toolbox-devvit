@@ -68,6 +68,22 @@ export class ToolboxClient {
 	}
 
 	/**
+	 * Gets the usernotes on a particular user.
+	 * @param subreddit Name of the subreddit to create the note in
+	 * @param username Username to fetch notes of
+	 * @param metadata Context metadata passed to Reddit API client calls
+	 * @returns Promise which resolves to an array of notes or rejects on error
+	 */
+	async getUsernotesOnUser (
+		subreddit: string,
+		username: string,
+		metadata: Metadata | undefined,
+	): Promise<Usernote[]> {
+		const notes = await this.getUsernotes(subreddit, metadata);
+		return notes.get(username);
+	}
+
+	/**
 	 * Saves usernotes from a {@linkcode Usernotes} instance to a subreddit.
 	 * @param subreddit Name of the subreddit to save notes to
 	 * @param notes Object containing all the subreddit's notes
@@ -116,21 +132,5 @@ export class ToolboxClient {
 		const notes = await this.getUsernotes(subreddit, metadata);
 		notes.add(note as Usernote);
 		await this.writeUsernotes(subreddit, notes, reason, metadata);
-	}
-
-	/**
-	 * Gets the usernotes on a particular user.
-	 * @param subreddit Name of the subreddit to create the note in
-	 * @param username Username to fetch notes of
-	 * @param metadata Context metadata passed to Reddit API client calls
-	 * @returns Promise which resolves to an array of notes or rejects on error
-	 */
-	async getUsernotesOnUser (
-		subreddit: string,
-		username: string,
-		metadata: Metadata | undefined,
-	): Promise<Usernote[]> {
-		const notes = await this.getUsernotes(subreddit, metadata);
-		return notes.get(username);
 	}
 }
