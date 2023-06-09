@@ -20,8 +20,8 @@ import {
  * after modification.
  */
 export class Usernotes {
-	/** An object mapping usernames to notes on the given user. */
-	private users: Record<string, Usernote[]> = {};
+	/** A mapping of usernames to notes on the given user. */
+	private users = new Map<string, Usernote[]>();
 
 	constructor (jsonString: string) {
 		let data = migrateUsernotesToLatestSchema(JSON.parse(jsonString));
@@ -30,10 +30,13 @@ export class Usernotes {
 		for (const [username, {ns}] of Object.entries(rawUsers)) {
 			for (const rawNote of ns) {
 				// TODO: cased usernames handled incorrectly
-				if (!this.users[username]) {
-					this.users[username] = [];
+				let userNotes = this.users.get(username);
+				if (userNotes == null) {
+					userNotes = [];
+					this.users.set(username, userNotes);
 				}
-				this.users[username].push({
+
+				userNotes.push({
 					username,
 					timestamp: new Date(rawNote.t * 1000),
 					text: rawNote.n!,
@@ -52,7 +55,12 @@ export class Usernotes {
 	 * @param link The permalink for the note, if any
 	 */
 	add (note: Usernote): void {
-		this.users[note.username].unshift(note);
+		let userNotes = this.users.get(note.username);
+		if (userNotes == null) {
+			userNotes = [];
+			this.users.set(note.username, userNotes);
+		}
+		userNotes.unshift(note);
 	}
 
 	/**
@@ -61,7 +69,11 @@ export class Usernotes {
 	 * @returns The list of usernotes
 	 */
 	get (username: string): Usernote[] {
-		return this.users[username] || [];
+		const userNotes = this.users.get(username);
+		if (userNotes == null) {
+			return [];
+		}
+		return [...userNotes];
 	}
 
 	/**
@@ -79,7 +91,12 @@ export class Usernotes {
 		// Reduce the array of notes into a raw users object, building the
 		// constants arrays as we go
 		const usersObject = {};
-		for (const [username, notes] of Object.entries(this.users)) {
+		for (const [username, notes] of this.users.entries()) {
+			// If we have no notes for this user, skip them
+			if (!notes.length) {
+				continue;
+			}
+
 			// Add space for this user in the users object
 			usersObject[username] = {ns: []};
 
