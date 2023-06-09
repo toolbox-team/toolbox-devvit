@@ -21,8 +21,8 @@ const TB_USERNOTES_PAGE = 'usernotes';
  * // A simple action that creates a usernote on a post's author
  * Devvit.addAction({
  * 	context: Context.POST,
- * 	name: 'Erin made a custom action',
- * 	description: 'Do something with this post',
+ * 	name: 'Create Test Usernote',
+ * 	description: 'Creates a Toolbox usernote for testing',
  * 	handler: async (event, metadata) => {
  * 		const subredditName = (await reddit.getCurrentSubreddit(metadata)).name;
  * 		const username = event.post.author!;
