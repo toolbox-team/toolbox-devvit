@@ -52,16 +52,18 @@ export class ToolboxClient {
 
 	/**
 	 * Creates a usernote.
-	 * @param options Information about the usernote to create
-	 * @param options.subreddit Name of the subreddit to create the note in
-	 * @param options.user Name of the user to add the note to
-	 * @param options.note Text of the note
-	 * @param options.link Context link included in the note
-	 * @param options.reason Wiki revision reason to send
+	 * @param subreddit Name of the subreddit to create the note in
+	 * @param note Information about the usernote to create
+	 * @param reason Wiki revision reason to send
 	 * @param metadata Context metadata passed to Reddit API client calls
 	 * @returns Promise which resolves on success or rejects on error
 	 */
-	async addUsernote (subreddit: string, note: Usernote, reason: string | undefined, metadata: Metadata | undefined): Promise<void> {
+	async addUsernote (
+		subreddit: string,
+		note: Usernote,
+		reason: string | undefined,
+		metadata: Metadata | undefined
+	): Promise<void> {
 		const page = await this.reddit.getWikiPage(subreddit, TB_USERNOTES_PAGE, metadata);
 		const notes = new Usernotes(page.content);
 		notes.add(note);
