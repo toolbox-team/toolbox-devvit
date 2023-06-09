@@ -1,6 +1,6 @@
 import {RedditAPIClient} from '@devvit/public-api';
 import {Metadata} from '@devvit/protos';
-import {Usernotes} from './UsernotesData';
+import {Usernotes} from './Usernotes';
 import { Usernote } from '../types/Usernote';
 
 /** The name of the wiki page where Toolbox stores usernotes. */
