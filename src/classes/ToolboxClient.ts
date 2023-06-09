@@ -74,4 +74,21 @@ export class ToolboxClient {
 			reason: reason || `create new note on user ${note.username} via community app`,
 		}, metadata);
 	}
+
+	/**
+	 * Gets the usernotes on a particular user.
+	 * @param subreddit Name of the subreddit to create the note in
+	 * @param username Username to fetch notes of
+	 * @param metadata Context metadata passed to Reddit API client calls
+	 * @returns Promise which resolves to an array of notes or rejects on error
+	 */
+	async getUsernotesOnUser (
+		subreddit: string,
+		username: string,
+		metadata: Metadata | undefined,
+	): Promise<Usernote[]> {
+		const page = await this.reddit.getWikiPage(subreddit, TB_USERNOTES_PAGE, metadata);
+		const notes = new Usernotes(page.content);
+		return notes.get(username);
+	}
 }
