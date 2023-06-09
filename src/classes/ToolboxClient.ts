@@ -1,7 +1,7 @@
 import {RedditAPIClient} from '@devvit/public-api';
 import {Metadata} from '@devvit/protos';
 import {Usernotes} from './Usernotes';
-import { Usernote } from '../types/Usernote';
+import {Usernote, UsernoteInit} from '../types/Usernote';
 
 /** The name of the wiki page where Toolbox stores usernotes. */
 const TB_USERNOTES_PAGE = 'usernotes';
@@ -92,14 +92,14 @@ export class ToolboxClient {
 	/**
 	 * Creates a usernote.
 	 * @param subreddit Name of the subreddit to create the note in
-	 * @param note Information about the usernote to create
+	 * @param note Details about the usernote to create
 	 * @param reason Wiki revision reason to send
 	 * @param metadata Context metadata passed to Reddit API client calls
 	 * @returns Promise which resolves on success or rejects on error
 	 */
 	async addUsernote (
 		subreddit: string,
-		note: Usernote,
+		note: UsernoteInit,
 		reason: string | undefined,
 		metadata: Metadata | undefined
 	): Promise<void> {

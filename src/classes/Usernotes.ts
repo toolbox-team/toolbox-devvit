@@ -2,7 +2,7 @@ import {
 	RawUsernotes,
 	RawUsernotesConstants,
 } from '../types/RawUsernotes';
-import {Usernote} from '../types/Usernote';
+import {Usernote, UsernoteInit} from '../types/Usernote';
 import {
 	LATEST_KNOWN_USERNOTES_SCHEMA,
 	compressBlob,
@@ -49,18 +49,19 @@ export class Usernotes {
 	}
 
 	/**
-	 * Adds a new usernote to a user.
-	 * @param username The user to add the note to
-	 * @param text The note's text
-	 * @param link The permalink for the note, if any
+	 * Adds a new usernote to the collection.
+	 * @param note Details about the usernote to create
 	 */
-	add (note: Usernote): void {
+	add (note: UsernoteInit): void {
 		let userNotes = this.users.get(note.username);
 		if (userNotes == null) {
 			userNotes = [];
 			this.users.set(note.username, userNotes);
 		}
-		userNotes.unshift(note);
+		if (note.timestamp == null) {
+			note.timestamp = new Date();
+		}
+		userNotes.unshift(note as Usernote);
 	}
 
 	/**
