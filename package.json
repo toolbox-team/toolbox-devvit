@@ -14,13 +14,13 @@
     "docs": "typedoc src/index.ts",
     "prepublishOnly": "tsc && ava"
   },
-  "repository": "https://github.com/eritbh/toolbox-devvit.git",
+  "repository": "https://github.com/toolbox-team/toolbox-devvit.git",
   "author": "eritbh <github@eritbh.me>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/eritbh/toolbox-devvit/issues"
+    "url": "https://github.com/toolbox-team/toolbox-devvit/issues"
   },
-  "homepage": "https://github.com/eritbh/toolbox-devvit#readme",
+  "homepage": "https://github.com/toolbox-team/toolbox-devvit#readme",
   "devDependencies": {
     "@devvit/public-api": "^0.9.9",
     "@types/node": "^13.7.4",
