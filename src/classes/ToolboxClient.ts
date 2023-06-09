@@ -14,7 +14,7 @@ const TB_USERNOTES_PAGE = 'usernotes';
  * @example
  * ```ts
  * import {Devvit, RedditAPIClient, Context} from '@devvit/public-api';
- * import {ToolboxClient} from '@eritbh/toolbox-devvit';
+ * import {ToolboxClient} from 'toolbox-devvit';
  * const reddit = new RedditAPIClient();
  * const toolbox = new ToolboxClient(reddit);
  *
