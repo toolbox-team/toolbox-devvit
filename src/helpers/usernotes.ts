@@ -3,7 +3,7 @@ import {
 	RawUsernotes,
 	RawUsernotesBlob,
 	RawUsernotesUsers,
-} from '../types/rawUsernotes';
+} from '../types/RawUsernotes';
 
 /**
  * The latest usernotes schema version that this library can handle. If a

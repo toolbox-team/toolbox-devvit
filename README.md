@@ -23,10 +23,16 @@ Devvit.addAction({
 	name: 'Create Test Usernote',
 	description: 'Creates a Toolbox usernote for testing',
 	handler: async (event, metadata) => {
-		const subreddit = (await reddit.getCurrentSubreddit(metadata)).name;
-		const user = event.post.author!;
-		const note = 'Hihi i am a note';
-		await toolbox.createUsernote({subreddit, user, note}, metadata);
+		const subredditName = (await reddit.getCurrentSubreddit(metadata)).name;
+		const username = event.post.author!;
+		const text = 'Hihi i am a note';
+		const wikiRevisionReason = 'Create note via my custom app';
+
+		await toolbox.addUsernote(subredditName, {
+			username,
+			text,
+		}, wikiRevisionReason, metadata);
+
 		return {success: true, message: 'Note added!'};
 	}
 });

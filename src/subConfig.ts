@@ -1,3 +1,5 @@
+// this is old and broken but i will fix it up soon i promise
+
 export const LATEST_KNOWN_CONFIG_SCHEMA = 1;
 export const EARLIEST_KNOWN_CONFIG_SCHEMA = 1;
 

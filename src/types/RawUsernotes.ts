@@ -1,11 +1,11 @@
 /** Raw data for a single usernote */
 export interface RawUsernotesNote {
 	/** Timestamp (seconds since epoch) */
-	t?: number;
+	t: number;
 	/** Note text */
-	n?: string;
+	n: string;
 	/** Index in constants.users of moderator who left this note */
-	m?: number;
+	m: number;
 	/** Index in constants.warnings of this note's type's key */
 	w?: number;
 	/** Permalink of note context, in shortened format */
