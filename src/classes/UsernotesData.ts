@@ -19,7 +19,7 @@ import {
  * methods to repack notes back into the raw form for writing back to the wiki
  * after modification.
  */
-export class UsernotesData {
+export class Usernotes {
 	/** An object mapping usernames to notes on the given user. */
 	private users: Record<string, Usernote[]> = {};
 

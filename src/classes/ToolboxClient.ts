@@ -1,6 +1,6 @@
 import {RedditAPIClient} from '@devvit/public-api';
 import {Metadata} from '@devvit/protos';
-import {UsernotesData} from './UsernotesData';
+import {Usernotes} from './UsernotesData';
 import { Usernote } from '../types/Usernote';
 
 /** The name of the wiki page where Toolbox stores usernotes. */
@@ -63,7 +63,7 @@ export class ToolboxClient {
 	 */
 	async addUsernote (subreddit: string, note: Usernote, reason: string | undefined, metadata: Metadata | undefined): Promise<void> {
 		const page = await this.reddit.getWikiPage(subreddit, TB_USERNOTES_PAGE, metadata);
-		const notes = new UsernotesData(page.content);
+		const notes = new Usernotes(page.content);
 		notes.addUsernote(note);
 		await this.reddit.updateWikiPage({
 			subredditName: subreddit,
