@@ -51,6 +51,40 @@ export class ToolboxClient {
 	}
 
 	/**
+	 * Gets a handle to all usernotes in a given subreddit.
+	 * @param subreddit Name of the subreddit to get notes from
+	 * @param metadata Context metadata passed to Reddit API client calls
+	 * @returns Promise which resolves to a {@linkcode Usernotes} instance
+	 * containing the notes, or rejects on error
+	 */
+	async getUsernotes (subreddit: string, metadata: Metadata | undefined): Promise<Usernotes> {
+		const page = await this.reddit.getWikiPage(subreddit, TB_USERNOTES_PAGE, metadata);
+		return new Usernotes(page.content);
+	}
+
+	/**
+	 * Saves usernotes from a {@linkcode Usernotes} instance to a subreddit.
+	 * @param subreddit Name of the subreddit to save notes to
+	 * @param notes Object containing all the subreddit's notes
+	 * @param reason Wiki revision reason to send
+	 * @param metadata Context metadata passed to Reddit API client calls
+	 * @returns Promise which resolves on success or rejects on error
+	 */
+	async writeUsernotes (
+		subreddit: string,
+		notes: Usernotes,
+		reason: string | undefined,
+		metadata: Metadata | undefined,
+	): Promise<void> {
+		await this.reddit.updateWikiPage({
+			subredditName: subreddit,
+			page: TB_USERNOTES_PAGE,
+			content: notes.toString(),
+			reason: reason || `modify notes via community app`,
+		}, metadata);
+	}
+
+	/**
 	 * Creates a usernote.
 	 * @param subreddit Name of the subreddit to create the note in
 	 * @param note Information about the usernote to create
@@ -64,15 +98,12 @@ export class ToolboxClient {
 		reason: string | undefined,
 		metadata: Metadata | undefined
 	): Promise<void> {
-		const page = await this.reddit.getWikiPage(subreddit, TB_USERNOTES_PAGE, metadata);
-		const notes = new Usernotes(page.content);
+		const notes = await this.getUsernotes(subreddit, metadata);
 		notes.add(note);
-		await this.reddit.updateWikiPage({
-			subredditName: subreddit,
-			page: TB_USERNOTES_PAGE,
-			content: notes.toString(),
-			reason: reason || `create new note on user ${note.username} via community app`,
-		}, metadata);
+		if (reason === undefined) {
+			reason = `create new note on user ${note.username} via community app`;
+		}
+		await this.writeUsernotes(subreddit, notes, reason, metadata);
 	}
 
 	/**
@@ -87,8 +118,7 @@ export class ToolboxClient {
 		username: string,
 		metadata: Metadata | undefined,
 	): Promise<Usernote[]> {
-		const page = await this.reddit.getWikiPage(subreddit, TB_USERNOTES_PAGE, metadata);
-		const notes = new Usernotes(page.content);
+		const notes = await this.getUsernotes(subreddit, metadata);
 		return notes.get(username);
 	}
 }
