@@ -1,6 +1,10 @@
-const test = require('ava');
+import test from 'ava';
 
-const {squashPermalink, expandPermalink} = require('.');
+import {
+	squashPermalink,
+	expandPermalink,
+	migrateUsernotesToLatestSchema,
+} from './usernotes';
 
 test('squashPermalink', t => {
 	for (const [arg, expected] of Object.entries({
@@ -62,6 +66,8 @@ test('expandPermalink', t => {
 	}
 });
 
-test.todo('migrateUsernotesSchema');
+test.todo('compressBlob');
 
-test.todo('Usernotes class stuff');
+test.todo('decompressBlob');
+
+test.todo('migrateUsernotesSchema');

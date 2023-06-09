@@ -22,15 +22,26 @@
   },
   "homepage": "https://github.com/eritbh/toolbox-devvit#readme",
   "devDependencies": {
+    "@ava/typescript": "^4.0.0",
     "@devvit/public-api": "^0.9.9",
     "@types/node": "^13.7.4",
     "ava": "^5.1.0",
     "eslint": "^6.8.0",
     "nyc": "^15.0.0",
+    "tsx": "^3.12.7",
     "typedoc": "^0.24.8",
     "typescript": "^5.1.3"
   },
   "dependencies": {
     "pako": "^1.0.11"
+  },
+  "ava": {
+    "extensions": {
+      "ts": "module"
+    },
+    "nodeArguments": [
+      "--loader=tsx",
+      "--no-warnings"
+    ]
   }
 }
