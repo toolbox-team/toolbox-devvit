@@ -3,7 +3,7 @@ import {
 	RawUsernotesConstants,
 	RawUsernotesNote,
 	RawUsernotesUsers,
-} from '../types/rawUsernotes';
+} from '../types/RawUsernotes';
 import {
 	LATEST_KNOWN_USERNOTES_SCHEMA,
 	compressBlob,
