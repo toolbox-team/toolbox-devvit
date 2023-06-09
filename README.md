@@ -20,13 +20,21 @@ const toolbox = new ToolboxClient(reddit);
 // A simple action that creates a usernote on a post's author
 Devvit.addAction({
 	context: Context.POST,
-	name: 'Create Test Usernote',
-	description: 'Creates a Toolbox usernote for testing',
+	name: 'Erin made a custom action',
+	description: 'Do something with this post',
 	handler: async (event, metadata) => {
-		const subreddit = (await reddit.getCurrentSubreddit(metadata)).name;
-		const user = event.post.author!;
-		const note = 'Hihi i am a note';
-		await toolbox.createUsernote({subreddit, user, note}, metadata);
+		const subredditName = (await reddit.getCurrentSubreddit(metadata)).name;
+		const username = event.post.author!;
+		const timestamp = new Date();
+		const text = 'Hihi i am a note';
+		const wikiRevisionReason = 'Create note via my custom app';
+
+		await toolbox.addUsernote(subredditName, {
+			username,
+			timestamp,
+			text,
+		}, wikiRevisionReason, metadata);
+
 		return {success: true, message: 'Note added!'};
 	}
 });

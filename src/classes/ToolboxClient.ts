@@ -15,7 +15,6 @@ const TB_USERNOTES_PAGE = 'usernotes';
  * ```ts
  * import {Devvit, RedditAPIClient, Context} from '@devvit/public-api';
  * import {ToolboxClient} from '@eritbh/toolbox-devvit';
- *
  * const reddit = new RedditAPIClient();
  * const toolbox = new ToolboxClient(reddit);
  *
@@ -25,11 +24,17 @@ const TB_USERNOTES_PAGE = 'usernotes';
  * 	name: 'Erin made a custom action',
  * 	description: 'Do something with this post',
  * 	handler: async (event, metadata) => {
- * 		const subreddit = (await reddit.getCurrentSubreddit(metadata)).name;
- * 		const user = event.post.author!;
- * 		const note = 'Hihi i am a note';
+ * 		const subredditName = (await reddit.getCurrentSubreddit(metadata)).name;
+ * 		const username = event.post.author!;
+ * 		const timestamp = new Date();
+ * 		const text = 'Hihi i am a note';
+ * 		const wikiRevisionReason = 'Create note via my custom app';
  *
- * 		await toolbox.createUsernote({subreddit, user, note}, metadata);
+ * 		await toolbox.addUsernote(subredditName, {
+ * 			username,
+ * 			timestamp,
+ * 			text,
+ * 		}, wikiRevisionReason, metadata);
  *
  * 		return {success: true, message: 'Note added!'};
  * 	}
