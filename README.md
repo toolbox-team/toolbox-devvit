@@ -1,18 +1,18 @@
-# toolbox-devvit [![npm version](https://img.shields.io/npm/v/@eritbh/toolbox-devvit.svg)](https://www.npmjs.com/package/@eritbh/toolbox-devvit)
+# toolbox-devvit [![npm version](https://img.shields.io/npm/v/toolbox-devvit.svg)](https://www.npmjs.com/package/toolbox-devvit)
 
-Helpers for working with /r/toolbox data from Devvit community apps.
+Helpers for working with /r/toolbox data from Devvit community apps. [Read the documentation.](https://toolbox-team.github.io/toolbox-devvit/)
 
 ## Installation
 
 ```bash
-npm install --production @eritbh/toolbox-devvit
+npm install --production toolbox-devvit
 ```
 
 ## Usage Example
 
 ```ts
 import {Devvit, RedditAPIClient, Context} from '@devvit/public-api';
-import {ToolboxClient} from '@eritbh/toolbox-devvit';
+import {ToolboxClient} from 'toolbox-devvit';
 
 const reddit = new RedditAPIClient();
 const toolbox = new ToolboxClient(reddit);
@@ -42,4 +42,4 @@ export default Devvit;
 
 ## License
 
-[MIT &copy; eritbh](/LICENSE)
+[MIT &copy; the toolbox team](/LICENSE)
