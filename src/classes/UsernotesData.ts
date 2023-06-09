@@ -60,8 +60,8 @@ export class Usernotes {
 	 * @param username The user to fetch the notes of
 	 * @returns The list of usernotes
 	 */
-	get (username: string): Usernote[] | null {
-		return this.users[username] || null;
+	get (username: string): Usernote[] {
+		return this.users[username] || [];
 	}
 
 	/**
