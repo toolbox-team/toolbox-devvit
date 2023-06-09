@@ -2,7 +2,7 @@ import {
 	RawUsernotes,
 	RawUsernotesConstants,
 } from '../types/RawUsernotes';
-import {Usernote, UsernoteInit} from '../types/Usernote';
+import {Usernote} from '../types/Usernote';
 import {
 	LATEST_KNOWN_USERNOTES_SCHEMA,
 	compressBlob,
@@ -40,9 +40,9 @@ export class Usernotes {
 					username,
 					timestamp: new Date(rawNote.t * 1000),
 					text: rawNote.n!,
-					moderatorUsername: data.constants.users[rawNote.m!],
+					moderatorUsername: data.constants.users[rawNote.m!]!,
 					contextPermalink: rawNote.l == null ? undefined : expandPermalink(rawNote.l),
-					noteType: rawNote.w == null ? undefined : data.constants.warnings[rawNote.w],
+					noteType: rawNote.w == null ? undefined : data.constants.warnings[rawNote.w] ?? undefined,
 				});
 			}
 		}
@@ -52,7 +52,7 @@ export class Usernotes {
 	 * Adds a new usernote to the collection.
 	 * @param note Details about the usernote to create
 	 */
-	add (note: UsernoteInit): void {
+	add (note: Usernote): void {
 		let userNotes = this.users.get(note.username);
 		if (userNotes == null) {
 			userNotes = [];
@@ -111,10 +111,13 @@ export class Usernotes {
 				}
 
 				// Add note type key to constants.warnings if it's not there
-				let typeKeyIndex = constants.warnings.indexOf(note.noteType);
-				if (typeKeyIndex === -1) {
-					typeKeyIndex = constants.warnings.length;
-					constants.warnings.push(note.noteType);
+				let typeKeyIndex;
+				if (note.noteType != null) {
+					typeKeyIndex = constants.warnings.indexOf(note.noteType);
+					if (typeKeyIndex === -1) {
+						typeKeyIndex = constants.warnings.length;
+						constants.warnings.push(note.noteType);
+					}
 				}
 
 				// Serialize this note and add it to the notes array

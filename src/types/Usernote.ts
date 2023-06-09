@@ -6,10 +6,16 @@ export interface UsernoteInit {
 	text: string;
 	/** The date and time the note was left, defaulting to the current time */
 	timestamp?: Date;
-	/** The username of the moderator who left the note */
-	moderatorUsername?: any;
-	/** The note type */
-	noteType?: any;
+	/**
+	 * The username of the moderator who left the note, defaulting to the
+	 * current user
+	 */
+	moderatorUsername?: string;
+	/**
+	 * The `key` of the note type of this note, used to look up details about
+	 * the note type from the subreddit's Toolbox config
+	 */
+	noteType?: string;
 	/** Permalink to the item the note was left in response to */
 	contextPermalink?: string;
 }
@@ -18,4 +24,8 @@ export interface UsernoteInit {
 export interface Usernote extends UsernoteInit {
 	/** The date and time the note was left */
 	timestamp: Date;
+	/**
+	 * The username of the moderator who left the note
+	 */
+	moderatorUsername: string;
 }

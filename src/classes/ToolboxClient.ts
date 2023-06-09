@@ -103,11 +103,18 @@ export class ToolboxClient {
 		reason: string | undefined,
 		metadata: Metadata | undefined
 	): Promise<void> {
-		const notes = await this.getUsernotes(subreddit, metadata);
-		notes.add(note);
+		if (!note.timestamp) {
+			note.timestamp = new Date();
+		}
+		if (!note.moderatorUsername) {
+			note.moderatorUsername = (await this.reddit.getAppUser(metadata)).username;
+		}
 		if (reason === undefined) {
 			reason = `create new note on user ${note.username} via community app`;
 		}
+
+		const notes = await this.getUsernotes(subreddit, metadata);
+		notes.add(note as Usernote);
 		await this.writeUsernotes(subreddit, notes, reason, metadata);
 	}
 
