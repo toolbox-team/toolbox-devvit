@@ -51,7 +51,7 @@ export class Usernotes {
 	 * @param text The note's text
 	 * @param link The permalink for the note, if any
 	 */
-	addUsernote (note: Usernote): void {
+	add (note: Usernote): void {
 		this.users[note.username].unshift(note);
 	}
 
@@ -60,7 +60,7 @@ export class Usernotes {
 	 * @param username The user to fetch the notes of
 	 * @returns The list of usernotes
 	 */
-	notesForUser (username: string): Usernote[] | null {
+	get (username: string): Usernote[] | null {
 		return this.users[username] || null;
 	}
 

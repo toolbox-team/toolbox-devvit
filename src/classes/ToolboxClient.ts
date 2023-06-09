@@ -64,7 +64,7 @@ export class ToolboxClient {
 	async addUsernote (subreddit: string, note: Usernote, reason: string | undefined, metadata: Metadata | undefined): Promise<void> {
 		const page = await this.reddit.getWikiPage(subreddit, TB_USERNOTES_PAGE, metadata);
 		const notes = new Usernotes(page.content);
-		notes.addUsernote(note);
+		notes.add(note);
 		await this.reddit.updateWikiPage({
 			subredditName: subreddit,
 			page: TB_USERNOTES_PAGE,
