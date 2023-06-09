@@ -64,4 +64,4 @@ test('expandPermalink', t => {
 
 test.todo('migrateUsernotesSchema');
 
-test.todo('UsernotesData stuff');
+test.todo('Usernotes class stuff');
