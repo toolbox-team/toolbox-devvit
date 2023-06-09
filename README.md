@@ -25,13 +25,11 @@ Devvit.addAction({
 	handler: async (event, metadata) => {
 		const subredditName = (await reddit.getCurrentSubreddit(metadata)).name;
 		const username = event.post.author!;
-		const timestamp = new Date();
 		const text = 'Hihi i am a note';
 		const wikiRevisionReason = 'Create note via my custom app';
 
 		await toolbox.addUsernote(subredditName, {
 			username,
-			timestamp,
 			text,
 		}, wikiRevisionReason, metadata);
 
