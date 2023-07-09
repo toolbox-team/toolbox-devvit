@@ -7,8 +7,8 @@ const TB_USERNOTES_PAGE = 'usernotes';
 
 /**
  * A client class for interfacing with Toolbox functionality and stored data
- * from within the Devvit platform. Wraps the Reddit API client provided with
- * Devvit and provides methods to perform various actions.
+ * from within the Devvit platform. Wraps the Reddit API client provided in
+ * Devvit events and provides methods to perform various actions.
  *
  * @example
  * ```ts
@@ -51,8 +51,9 @@ export class ToolboxClient {
 	reddit: RedditAPIClient;
 
 	/**
-	 * Creates a Toolbox client. Do this once at the top of your app, right
-	 * after you create your Reddit API client.
+	 * Creates a Toolbox client. Do this at the top of event handlers, where you
+	 * passing `reddit` from the event context. Make sure you've called
+	 * `Devvit.configure({redditAPI: true})` as well!
 	 * @param redditClient Your {@linkcode RedditAPIClient} instance
 	 */
 	constructor (redditClient) {
