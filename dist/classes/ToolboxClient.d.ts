@@ -1,36 +1,42 @@
 import { RedditAPIClient } from '@devvit/public-api';
-import { Metadata } from '@devvit/protos';
 import { Usernotes } from './Usernotes';
 import { Usernote, UsernoteInit } from '../types/Usernote';
 /**
  * A client class for interfacing with Toolbox functionality and stored data
- * from within the Devvit platform. Wraps the Reddit API client provided with
- * Devvit and provides methods to perform various actions.
+ * from within the Devvit platform. Wraps the Reddit API client provided in
+ * Devvit events and provides methods to perform various actions.
  *
  * @example
  * ```ts
- * import {Devvit, RedditAPIClient, Context} from '@devvit/public-api';
- * import {ToolboxClient} from 'toolbox-devvit';
- * const reddit = new RedditAPIClient();
- * const toolbox = new ToolboxClient(reddit);
+ * import {Devvit} from '@devvit/public-api';
+ * import {ToolboxClient} from './src/index';
+ *
+ * Devvit.configure({
+ * 	redditAPI: true,
+ * 	// ...
+ * });
  *
  * // A simple action that creates a usernote on a post's author
- * Devvit.addAction({
- * 	context: Context.POST,
- * 	name: 'Create Test Usernote',
+ * Devvit.addMenuItem({
+ * 	location: 'post',
+ * 	label: 'Create Test Usernote',
  * 	description: 'Creates a Toolbox usernote for testing',
- * 	handler: async (event, metadata) => {
- * 		const subredditName = (await reddit.getCurrentSubreddit(metadata)).name;
- * 		const username = event.post.author!;
+ * 	onPress: async (event, {reddit, ui, postId}) => {
+ * 		const subredditName = (await reddit.getCurrentSubreddit()).name;
+ * 		const username = (await reddit.getPostById(postId!)).authorName;
  * 		const text = 'Hihi i am a note';
  * 		const wikiRevisionReason = 'Create note via my custom app';
  *
+ * 		const toolbox = new ToolboxClient(reddit);
  * 		await toolbox.addUsernote(subredditName, {
  * 			username,
  * 			text,
- * 		}, wikiRevisionReason, metadata);
+ * 		}, wikiRevisionReason);
  *
- * 		return {success: true, message: 'Note added!'};
+ * 		ui.showToast({
+ * 			appearance: 'success',
+ * 			text: 'Note added!',
+ * 		});
  * 	}
  * });
  *
@@ -40,8 +46,9 @@ import { Usernote, UsernoteInit } from '../types/Usernote';
 export declare class ToolboxClient {
     reddit: RedditAPIClient;
     /**
-     * Creates a Toolbox client. Do this once at the top of your app, right
-     * after you create your Reddit API client.
+     * Creates a Toolbox client. Do this at the top of event handlers, where you
+     * passing `reddit` from the event context. Make sure you've called
+     * `Devvit.configure({redditAPI: true})` as well!
      * @param redditClient Your {@linkcode RedditAPIClient} instance
      */
     constructor(redditClient: any);
@@ -52,7 +59,7 @@ export declare class ToolboxClient {
      * @returns Promise which resolves to a {@linkcode Usernotes} instance
      * containing the notes, or rejects on error
      */
-    getUsernotes(subreddit: string, metadata: Metadata | undefined): Promise<Usernotes>;
+    getUsernotes(subreddit: string): Promise<Usernotes>;
     /**
      * Gets the usernotes on a particular user.
      * @param subreddit Name of the subreddit to create the note in
@@ -60,7 +67,7 @@ export declare class ToolboxClient {
      * @param metadata Context metadata passed to Reddit API client calls
      * @returns Promise which resolves to an array of notes or rejects on error
      */
-    getUsernotesOnUser(subreddit: string, username: string, metadata: Metadata | undefined): Promise<Usernote[]>;
+    getUsernotesOnUser(subreddit: string, username: string): Promise<Usernote[]>;
     /**
      * Saves usernotes from a {@linkcode Usernotes} instance to a subreddit.
      * @param subreddit Name of the subreddit to save notes to
@@ -69,7 +76,7 @@ export declare class ToolboxClient {
      * @param metadata Context metadata passed to Reddit API client calls
      * @returns Promise which resolves on success or rejects on error
      */
-    writeUsernotes(subreddit: string, notes: Usernotes, reason: string | undefined, metadata: Metadata | undefined): Promise<void>;
+    writeUsernotes(subreddit: string, notes: Usernotes, reason: string | undefined): Promise<void>;
     /**
      * Creates a usernote.
      * @param subreddit Name of the subreddit to create the note in
@@ -78,5 +85,5 @@ export declare class ToolboxClient {
      * @param metadata Context metadata passed to Reddit API client calls
      * @returns Promise which resolves on success or rejects on error
      */
-    addUsernote(subreddit: string, note: UsernoteInit, reason: string | undefined, metadata: Metadata | undefined): Promise<void>;
+    addUsernote(subreddit: string, note: UsernoteInit, reason: string | undefined): Promise<void>;
 }

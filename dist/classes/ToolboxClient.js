@@ -15,33 +15,40 @@ const Usernotes_1 = require("./Usernotes");
 const TB_USERNOTES_PAGE = 'usernotes';
 /**
  * A client class for interfacing with Toolbox functionality and stored data
- * from within the Devvit platform. Wraps the Reddit API client provided with
- * Devvit and provides methods to perform various actions.
+ * from within the Devvit platform. Wraps the Reddit API client provided in
+ * Devvit events and provides methods to perform various actions.
  *
  * @example
  * ```ts
- * import {Devvit, RedditAPIClient, Context} from '@devvit/public-api';
- * import {ToolboxClient} from 'toolbox-devvit';
- * const reddit = new RedditAPIClient();
- * const toolbox = new ToolboxClient(reddit);
+ * import {Devvit} from '@devvit/public-api';
+ * import {ToolboxClient} from './src/index';
+ *
+ * Devvit.configure({
+ * 	redditAPI: true,
+ * 	// ...
+ * });
  *
  * // A simple action that creates a usernote on a post's author
- * Devvit.addAction({
- * 	context: Context.POST,
- * 	name: 'Create Test Usernote',
+ * Devvit.addMenuItem({
+ * 	location: 'post',
+ * 	label: 'Create Test Usernote',
  * 	description: 'Creates a Toolbox usernote for testing',
- * 	handler: async (event, metadata) => {
- * 		const subredditName = (await reddit.getCurrentSubreddit(metadata)).name;
- * 		const username = event.post.author!;
+ * 	onPress: async (event, {reddit, ui, postId}) => {
+ * 		const subredditName = (await reddit.getCurrentSubreddit()).name;
+ * 		const username = (await reddit.getPostById(postId!)).authorName;
  * 		const text = 'Hihi i am a note';
  * 		const wikiRevisionReason = 'Create note via my custom app';
  *
+ * 		const toolbox = new ToolboxClient(reddit);
  * 		await toolbox.addUsernote(subredditName, {
  * 			username,
  * 			text,
- * 		}, wikiRevisionReason, metadata);
+ * 		}, wikiRevisionReason);
  *
- * 		return {success: true, message: 'Note added!'};
+ * 		ui.showToast({
+ * 			appearance: 'success',
+ * 			text: 'Note added!',
+ * 		});
  * 	}
  * });
  *
@@ -50,8 +57,9 @@ const TB_USERNOTES_PAGE = 'usernotes';
  */
 class ToolboxClient {
     /**
-     * Creates a Toolbox client. Do this once at the top of your app, right
-     * after you create your Reddit API client.
+     * Creates a Toolbox client. Do this at the top of event handlers, where you
+     * passing `reddit` from the event context. Make sure you've called
+     * `Devvit.configure({redditAPI: true})` as well!
      * @param redditClient Your {@linkcode RedditAPIClient} instance
      */
     constructor(redditClient) {
@@ -64,9 +72,9 @@ class ToolboxClient {
      * @returns Promise which resolves to a {@linkcode Usernotes} instance
      * containing the notes, or rejects on error
      */
-    getUsernotes(subreddit, metadata) {
+    getUsernotes(subreddit) {
         return __awaiter(this, void 0, void 0, function* () {
-            const page = yield this.reddit.getWikiPage(subreddit, TB_USERNOTES_PAGE, metadata);
+            const page = yield this.reddit.getWikiPage(subreddit, TB_USERNOTES_PAGE);
             return new Usernotes_1.Usernotes(page.content);
         });
     }
@@ -77,9 +85,9 @@ class ToolboxClient {
      * @param metadata Context metadata passed to Reddit API client calls
      * @returns Promise which resolves to an array of notes or rejects on error
      */
-    getUsernotesOnUser(subreddit, username, metadata) {
+    getUsernotesOnUser(subreddit, username) {
         return __awaiter(this, void 0, void 0, function* () {
-            const notes = yield this.getUsernotes(subreddit, metadata);
+            const notes = yield this.getUsernotes(subreddit);
             return notes.get(username);
         });
     }
@@ -91,14 +99,14 @@ class ToolboxClient {
      * @param metadata Context metadata passed to Reddit API client calls
      * @returns Promise which resolves on success or rejects on error
      */
-    writeUsernotes(subreddit, notes, reason, metadata) {
+    writeUsernotes(subreddit, notes, reason) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.reddit.updateWikiPage({
                 subredditName: subreddit,
                 page: TB_USERNOTES_PAGE,
                 content: notes.toString(),
                 reason: reason || `modify notes via community app`,
-            }, metadata);
+            });
         });
     }
     /**
@@ -109,20 +117,20 @@ class ToolboxClient {
      * @param metadata Context metadata passed to Reddit API client calls
      * @returns Promise which resolves on success or rejects on error
      */
-    addUsernote(subreddit, note, reason, metadata) {
+    addUsernote(subreddit, note, reason) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!note.timestamp) {
                 note.timestamp = new Date();
             }
             if (!note.moderatorUsername) {
-                note.moderatorUsername = (yield this.reddit.getAppUser(metadata)).username;
+                note.moderatorUsername = (yield this.reddit.getAppUser()).username;
             }
             if (reason === undefined) {
                 reason = `create new note on user ${note.username} via community app`;
             }
-            const notes = yield this.getUsernotes(subreddit, metadata);
+            const notes = yield this.getUsernotes(subreddit);
             notes.add(note);
-            yield this.writeUsernotes(subreddit, notes, reason, metadata);
+            yield this.writeUsernotes(subreddit, notes, reason);
         });
     }
 }

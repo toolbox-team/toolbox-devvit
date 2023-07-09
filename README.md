@@ -11,29 +11,35 @@ npm install --production toolbox-devvit
 ## Usage Example
 
 ```ts
-import {Devvit, RedditAPIClient, Context} from '@devvit/public-api';
-import {ToolboxClient} from 'toolbox-devvit';
+import {Devvit} from '@devvit/public-api';
+import {ToolboxClient} from './src/index';
 
-const reddit = new RedditAPIClient();
-const toolbox = new ToolboxClient(reddit);
+Devvit.configure({
+	redditAPI: true,
+	// ...
+});
 
 // A simple action that creates a usernote on a post's author
-Devvit.addAction({
-	context: Context.POST,
-	name: 'Create Test Usernote',
+Devvit.addMenuItem({
+	location: 'post',
+	label: 'Create Test Usernote',
 	description: 'Creates a Toolbox usernote for testing',
-	handler: async (event, metadata) => {
-		const subredditName = (await reddit.getCurrentSubreddit(metadata)).name;
-		const username = event.post.author!;
+	onPress: async (event, {reddit, ui, postId}) => {
+		const subredditName = (await reddit.getCurrentSubreddit()).name;
+		const username = (await reddit.getPostById(postId!)).authorName;
 		const text = 'Hihi i am a note';
 		const wikiRevisionReason = 'Create note via my custom app';
 
+		const toolbox = new ToolboxClient(reddit);
 		await toolbox.addUsernote(subredditName, {
 			username,
 			text,
-		}, wikiRevisionReason, metadata);
+		}, wikiRevisionReason);
 
-		return {success: true, message: 'Note added!'};
+		ui.showToast({
+			appearance: 'success',
+			text: 'Note added!',
+		});
 	}
 });
 
