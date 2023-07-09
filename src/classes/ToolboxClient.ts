@@ -1,5 +1,4 @@
 import {RedditAPIClient} from '@devvit/public-api';
-import {Metadata} from '@devvit/protos';
 import {Usernotes} from './Usernotes';
 import {Usernote, UsernoteInit} from '../types/Usernote';
 
@@ -60,8 +59,8 @@ export class ToolboxClient {
 	 * @returns Promise which resolves to a {@linkcode Usernotes} instance
 	 * containing the notes, or rejects on error
 	 */
-	async getUsernotes (subreddit: string, metadata: Metadata | undefined): Promise<Usernotes> {
-		const page = await this.reddit.getWikiPage(subreddit, TB_USERNOTES_PAGE, metadata);
+	async getUsernotes (subreddit: string): Promise<Usernotes> {
+		const page = await this.reddit.getWikiPage(subreddit, TB_USERNOTES_PAGE);
 		return new Usernotes(page.content);
 	}
 
@@ -75,9 +74,8 @@ export class ToolboxClient {
 	async getUsernotesOnUser (
 		subreddit: string,
 		username: string,
-		metadata: Metadata | undefined,
 	): Promise<Usernote[]> {
-		const notes = await this.getUsernotes(subreddit, metadata);
+		const notes = await this.getUsernotes(subreddit);
 		return notes.get(username);
 	}
 
@@ -93,14 +91,13 @@ export class ToolboxClient {
 		subreddit: string,
 		notes: Usernotes,
 		reason: string | undefined,
-		metadata: Metadata | undefined,
 	): Promise<void> {
 		await this.reddit.updateWikiPage({
 			subredditName: subreddit,
 			page: TB_USERNOTES_PAGE,
 			content: notes.toString(),
 			reason: reason || `modify notes via community app`,
-		}, metadata);
+		});
 	}
 
 	/**
@@ -115,20 +112,19 @@ export class ToolboxClient {
 		subreddit: string,
 		note: UsernoteInit,
 		reason: string | undefined,
-		metadata: Metadata | undefined
 	): Promise<void> {
 		if (!note.timestamp) {
 			note.timestamp = new Date();
 		}
 		if (!note.moderatorUsername) {
-			note.moderatorUsername = (await this.reddit.getAppUser(metadata)).username;
+			note.moderatorUsername = (await this.reddit.getAppUser()).username;
 		}
 		if (reason === undefined) {
 			reason = `create new note on user ${note.username} via community app`;
 		}
 
-		const notes = await this.getUsernotes(subreddit, metadata);
+		const notes = await this.getUsernotes(subreddit);
 		notes.add(note as Usernote);
-		await this.writeUsernotes(subreddit, notes, reason, metadata);
+		await this.writeUsernotes(subreddit, notes, reason);
 	}
 }
