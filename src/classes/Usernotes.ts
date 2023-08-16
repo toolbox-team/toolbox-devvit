@@ -72,11 +72,41 @@ export class Usernotes {
 	 * @returns The list of usernotes
 	 */
 	get (username: string): Usernote[] {
-		const userNotes = this.users.get(username);
-		if (userNotes == null) {
-			return [];
+		// If the username contains capital letters, we need to also check for
+		// notes saved under the lowercased version of the name first. Some
+		// poorly-behaved third-party apps always lowercase the username before
+		// writing new notes, and we check for this and merge those notes into
+		// the list stored under the canonical spelling on the fly. See also
+		// toolbox-team/reddit-moderator-toolbox#577
+		const usernameLowercase = username.toLowerCase();
+		if (username === usernameLowercase) {
+			// the lowercased name *is* the canonical name, so third-party
+			// implementations can't have possibly fucked it up (knock on wood)
+			return this.users.get(username) || [];
 		}
-		return [...userNotes];
+
+		// get a reference to the notes array under the canonical username
+		let notes = this.users.get(username);
+		if (!notes) {
+			notes = [];
+			this.users.set(username, notes);
+		}
+
+		// Get the notes under the lowercased username, rewrite the username
+		// property of each to the canonical username, and push them into the
+		// canonical list of notes. Then, completely remove the entry under the
+		// lowercased username so it will be removed if we save to wiki later.
+		const otherNotes = (this.users.get(usernameLowercase) || []).map(note => ({
+			...note,
+			username,
+		}));
+		notes.push(...otherNotes);
+		this.users.delete(usernameLowercase);
+
+		// the two note lists might overlap in date range; sort in place
+		notes.sort((a, b) => +b.timestamp - +a.timestamp);
+
+		return notes;
 	}
 
 	/**
