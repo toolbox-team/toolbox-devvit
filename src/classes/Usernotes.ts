@@ -96,7 +96,7 @@ export class Usernotes {
 		// property of each to the canonical username, and push them into the
 		// canonical list of notes. Then, completely remove the entry under the
 		// lowercased username so it will be removed if we save to wiki later.
-                const otherNotes = this.users.get(usernameLowercase) || [];
+		const otherNotes = this.users.get(usernameLowercase) || [];
 		const updatedNotes = otherNotes.map(note => ({
 			...note,
 			username,
