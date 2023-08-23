@@ -12,7 +12,7 @@ npm install --production toolbox-devvit
 
 ```ts
 import {Devvit} from '@devvit/public-api';
-import {ToolboxClient} from './src/index';
+import {ToolboxClient} from 'toolbox-devvit';
 
 Devvit.configure({
 	redditAPI: true,

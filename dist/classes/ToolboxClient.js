@@ -21,7 +21,7 @@ const TB_USERNOTES_PAGE = 'usernotes';
  * @example
  * ```ts
  * import {Devvit} from '@devvit/public-api';
- * import {ToolboxClient} from './src/index';
+ * import {ToolboxClient} from 'toolbox-devvit';
  *
  * Devvit.configure({
  * 	redditAPI: true,
