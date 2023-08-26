@@ -1,49 +1,49 @@
 {
-  "name": "toolbox-devvit",
-  "version": "0.3.0",
-  "description": "Helpers for working with /r/toolbox data from Devvit community apps.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist/*"
-  ],
-  "scripts": {
-    "fmt": "dprint fmt",
-    "build": "tsc",
-    "test": "ava",
-    "coverage": "nyc ava",
-    "docs": "typedoc src/index.ts",
-    "prepublishOnly": "tsc && ava"
-  },
-  "repository": "https://github.com/toolbox-team/toolbox-devvit.git",
-  "author": "eritbh <github@eritbh.me>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/toolbox-team/toolbox-devvit/issues"
-  },
-  "homepage": "https://github.com/toolbox-team/toolbox-devvit#readme",
-  "devDependencies": {
-    "@ava/typescript": "^4.0.0",
-    "@devvit/public-api": "^0.10.0",
-    "@types/node": "^13.7.4",
-    "ava": "^5.3.0",
-    "dprint": "^0.40.2",
-    "eslint": "^6.8.0",
-    "nyc": "^15.0.0",
-    "tsx": "^3.12.7",
-    "typedoc": "^0.24.8",
-    "typescript": "^5.1.3"
-  },
-  "dependencies": {
-    "pako": "^1.0.11"
-  },
-  "ava": {
-    "extensions": {
-      "ts": "module"
-    },
-    "nodeArguments": [
-      "--loader=tsx",
-      "--no-warnings"
-    ]
-  }
+	"name": "toolbox-devvit",
+	"version": "0.3.0",
+	"description": "Helpers for working with /r/toolbox data from Devvit community apps.",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist/*"
+	],
+	"scripts": {
+		"fmt": "dprint fmt",
+		"build": "tsc",
+		"test": "ava",
+		"coverage": "nyc ava",
+		"docs": "typedoc src/index.ts",
+		"prepublishOnly": "tsc && ava"
+	},
+	"repository": "https://github.com/toolbox-team/toolbox-devvit.git",
+	"author": "eritbh <github@eritbh.me>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/toolbox-team/toolbox-devvit/issues"
+	},
+	"homepage": "https://github.com/toolbox-team/toolbox-devvit#readme",
+	"devDependencies": {
+		"@ava/typescript": "^4.0.0",
+		"@devvit/public-api": "^0.10.0",
+		"@types/node": "^13.7.4",
+		"ava": "^5.3.0",
+		"dprint": "^0.40.2",
+		"eslint": "^6.8.0",
+		"nyc": "^15.0.0",
+		"tsx": "^3.12.7",
+		"typedoc": "^0.24.8",
+		"typescript": "^5.1.3"
+	},
+	"dependencies": {
+		"pako": "^1.0.11"
+	},
+	"ava": {
+		"extensions": {
+			"ts": "module"
+		},
+		"nodeArguments": [
+			"--loader=tsx",
+			"--no-warnings"
+		]
+	}
 }

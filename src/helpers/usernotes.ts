@@ -29,7 +29,11 @@ export const EARLIEST_KNOWN_USERNOTES_SCHEMA = 4;
  */
 export function squashPermalink (permalink: string): string {
 	let match: RegExpMatchArray | null;
-	if ((match = permalink.match(/(?:\/comments|^https?:\/\/redd\.it)\/([a-z0-9]+)(?:\/[^/]*(?:\/([a-z0-9]+)?)?)?/))) {
+	if (
+		(match = permalink.match(
+			/(?:\/comments|^https?:\/\/redd\.it)\/([a-z0-9]+)(?:\/[^/]*(?:\/([a-z0-9]+)?)?)?/,
+		))
+	) {
 		// Submission pages
 		let squashed = `l,${match[1]}`;
 		if (match[2]) {
@@ -58,7 +62,9 @@ export function squashPermalink (permalink: string): string {
 export function expandPermalink (shortenedLink: string): string {
 	if (shortenedLink.startsWith('l,')) {
 		// Expand to a submission or comment permalink
-		return `https://www.reddit.com/comments/${shortenedLink.substr(2).split(',').join('/_/')}`;
+		return `https://www.reddit.com/comments/${
+			shortenedLink.substr(2).split(',').join('/_/')
+		}`;
 	} else if (shortenedLink.startsWith('m,')) {
 		// Expand to a message permalink
 		return `https://www.reddit.com/message/messages/${shortenedLink.substr(2)}`;
@@ -85,7 +91,11 @@ export function compressBlob<T> (value: T): RawUsernotesBlob<T> {
  * @returns The original JSON value.
  */
 export function decompressBlob<T> (blob: RawUsernotesBlob<T>): T {
-	return JSON.parse(pako.inflate(Buffer.from(blob, 'base64').toString('binary'), {to: 'string'}));
+	return JSON.parse(
+		pako.inflate(Buffer.from(blob, 'base64').toString('binary'), {
+			to: 'string',
+		}),
+	);
 }
 
 /**
@@ -98,10 +108,14 @@ export function decompressBlob<T> (blob: RawUsernotesBlob<T>): T {
  */
 export function migrateUsernotesToLatestSchema (data: any): RawUsernotes {
 	if (data.ver < EARLIEST_KNOWN_USERNOTES_SCHEMA) {
-		throw new TypeError(`Unknown schema version ${data.ver} (earliest known version is ${EARLIEST_KNOWN_USERNOTES_SCHEMA})`);
+		throw new TypeError(
+			`Unknown schema version ${data.ver} (earliest known version is ${EARLIEST_KNOWN_USERNOTES_SCHEMA})`,
+		);
 	}
 	if (data.ver > LATEST_KNOWN_USERNOTES_SCHEMA) {
-		throw new TypeError(`Unknown schema version ${data.ver} (latest known version is ${LATEST_KNOWN_USERNOTES_SCHEMA})`);
+		throw new TypeError(
+			`Unknown schema version ${data.ver} (latest known version is ${LATEST_KNOWN_USERNOTES_SCHEMA})`,
+		);
 	}
 
 	// eslint-disable-next-line default-case
@@ -110,7 +124,9 @@ export function migrateUsernotesToLatestSchema (data: any): RawUsernotes {
 			// Timestamps need to be converted from milliseconds to seconds
 			for (const user of Object.values(data.users as RawUsernotesUsers)) {
 				for (const note of user.ns) {
-					if (note.t) note.t /= 1000;
+					if (note.t) {
+						note.t /= 1000;
+					}
 				}
 			}
 			// fallthrough to immediately bump to next version

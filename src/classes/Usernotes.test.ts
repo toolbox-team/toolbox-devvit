@@ -1,7 +1,7 @@
 import test from 'ava';
-import {Usernotes} from './Usernotes';
 import {compressBlob, decompressBlob} from '../helpers/usernotes';
 import type {RawUsernotes} from '../types/RawUsernotes';
+import {Usernotes} from './Usernotes';
 
 test.todo('constructor');
 
@@ -61,17 +61,20 @@ test('get: read and merge existing entries for lowercased usernames', t => {
 			text: 'test 1',
 		},
 		{
-			text: 'test 0'
+			text: 'test 0',
 		},
 	], 'notes from both spellings of the username should be returned in order');
 
 	// expect the entry under the lowercased username to be gone when saving
 	const newUsersData = decompressBlob(usernotes.toJSON().blob);
-	t.false('someuser' in newUsersData, 'lowercased spelling of the username should be removed from usernotes object');
-})
+	t.false(
+		'someuser' in newUsersData,
+		'lowercased spelling of the username should be removed from usernotes object',
+	);
+});
 
 test.todo('add');
 
 test.todo('toJSON');
 
-test.todo('toString')
+test.todo('toString');

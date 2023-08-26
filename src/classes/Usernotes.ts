@@ -1,16 +1,13 @@
 import {
-	RawUsernotes,
-	RawUsernotesConstants,
-} from '../types/RawUsernotes';
-import {Usernote} from '../types/Usernote';
-import {
-	LATEST_KNOWN_USERNOTES_SCHEMA,
 	compressBlob,
 	decompressBlob,
 	expandPermalink,
-	squashPermalink,
+	LATEST_KNOWN_USERNOTES_SCHEMA,
 	migrateUsernotesToLatestSchema,
+	squashPermalink,
 } from '../helpers/usernotes';
+import {RawUsernotes, RawUsernotesConstants} from '../types/RawUsernotes';
+import {Usernote} from '../types/Usernote';
 
 // TODO: nothing here handles username case correctly; go back and check the
 //       toolbox implementation of that for correctness later and write test
@@ -43,8 +40,12 @@ export class Usernotes {
 					timestamp: new Date(rawNote.t * 1000),
 					text: rawNote.n!,
 					moderatorUsername: data.constants.users[rawNote.m!]!,
-					contextPermalink: rawNote.l == null ? undefined : expandPermalink(rawNote.l),
-					noteType: rawNote.w == null ? undefined : data.constants.warnings[rawNote.w] ?? undefined,
+					contextPermalink: rawNote.l == null
+						? undefined
+						: expandPermalink(rawNote.l),
+					noteType: rawNote.w == null
+						? undefined
+						: data.constants.warnings[rawNote.w] ?? undefined,
 				});
 			}
 		}
@@ -159,7 +160,9 @@ export class Usernotes {
 					n: note.text,
 					m: modIndex,
 					w: typeKeyIndex,
-					l: note.contextPermalink == null ? undefined : squashPermalink(note.contextPermalink),
+					l: note.contextPermalink == null
+						? undefined
+						: squashPermalink(note.contextPermalink),
 				});
 			}
 		}

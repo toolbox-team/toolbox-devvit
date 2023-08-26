@@ -4,59 +4,59 @@ export const LATEST_KNOWN_CONFIG_SCHEMA = 1;
 export const EARLIEST_KNOWN_CONFIG_SCHEMA = 1;
 
 export interface RawSubredditConfig {
-    /** The schema version of the data */
-    ver: number;
-    /** Settings for domain tags */
-    domainTags: DomainTag[];
-    /** Default settings for banning users via the mod button */
-    banMacros: {
-        /** The default mod-only ban note */
-        banNote: string;
-        /** The default message sent to banned users */
-        banMessage: string;
-    };
-    /** Settings for removal reasons */
-    removalReasons: {
-        header: string;
-        footer: string;
-        pmsubject: string;
-        logreason: unknown;
-        logsub: unknown;
-        logtitle: unknown;
-        bantitle: unknown;
-        getfrom: unknown;
-        reasons: RemovalReason[];
-    };
-    modMacros: ModMacro[];
-    usernoteColors: UsernoteType[];
+	/** The schema version of the data */
+	ver: number;
+	/** Settings for domain tags */
+	domainTags: DomainTag[];
+	/** Default settings for banning users via the mod button */
+	banMacros: {
+		/** The default mod-only ban note */
+		banNote: string;
+		/** The default message sent to banned users */
+		banMessage: string;
+	};
+	/** Settings for removal reasons */
+	removalReasons: {
+		header: string;
+		footer: string;
+		pmsubject: string;
+		logreason: unknown;
+		logsub: unknown;
+		logtitle: unknown;
+		bantitle: unknown;
+		getfrom: unknown;
+		reasons: RemovalReason[];
+	};
+	modMacros: ModMacro[];
+	usernoteColors: UsernoteType[];
 }
 
 export interface DomainTag {
-    /** The domain to tag, e.g. "example.com" */
-    name: string;
-    /** A CSS color value */
-    color: string;
+	/** The domain to tag, e.g. "example.com" */
+	name: string;
+	/** A CSS color value */
+	color: string;
 }
 
 export interface RemovalReason {
-    title: string;
-    text: string;
-    flairText: string;
-    cssClass: string;
+	title: string;
+	text: string;
+	flairText: string;
+	cssClass: string;
 }
 
 export interface ModMacro {
-    title: string;
-    text: string;
-    distinguish: boolean;
-    ban: boolean;
-    mute: boolean;
-    remove: boolean;
-    appprove: boolean;
-    lockthread: boolean;
-    sticky: boolean;
-    archivemodmail: boolean;
-    highlightmodmail: boolean;
+	title: string;
+	text: string;
+	distinguish: boolean;
+	ban: boolean;
+	mute: boolean;
+	remove: boolean;
+	appprove: boolean;
+	lockthread: boolean;
+	sticky: boolean;
+	archivemodmail: boolean;
+	highlightmodmail: boolean;
 }
 
 /** A single usernote type */

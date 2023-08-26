@@ -1,6 +1,6 @@
 import {RedditAPIClient} from '@devvit/public-api';
-import {Usernotes} from './Usernotes';
 import {Usernote, UsernoteInit} from '../types/Usernote';
+import {Usernotes} from './Usernotes';
 
 /** The name of the wiki page where Toolbox stores usernotes. */
 const TB_USERNOTES_PAGE = 'usernotes';
