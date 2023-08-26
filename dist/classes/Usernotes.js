@@ -30,8 +30,12 @@ class Usernotes {
                     timestamp: new Date(rawNote.t * 1000),
                     text: rawNote.n,
                     moderatorUsername: data.constants.users[rawNote.m],
-                    contextPermalink: rawNote.l == null ? undefined : (0, usernotes_1.expandPermalink)(rawNote.l),
-                    noteType: rawNote.w == null ? undefined : (_a = data.constants.warnings[rawNote.w]) !== null && _a !== void 0 ? _a : undefined,
+                    contextPermalink: rawNote.l == null
+                        ? undefined
+                        : (0, usernotes_1.expandPermalink)(rawNote.l),
+                    noteType: rawNote.w == null
+                        ? undefined
+                        : (_a = data.constants.warnings[rawNote.w]) !== null && _a !== void 0 ? _a : undefined,
                 });
             }
         }
@@ -131,7 +135,9 @@ class Usernotes {
                     n: note.text,
                     m: modIndex,
                     w: typeKeyIndex,
-                    l: note.contextPermalink == null ? undefined : (0, usernotes_1.squashPermalink)(note.contextPermalink),
+                    l: note.contextPermalink == null
+                        ? undefined
+                        : (0, usernotes_1.squashPermalink)(note.contextPermalink),
                 });
             }
         }

@@ -14,9 +14,9 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(require("./classes/ToolboxClient"), exports);
+__exportStar(require("./classes/Usernotes"), exports);
 __exportStar(require("./helpers/usernotes"), exports);
 __exportStar(require("./types/RawUsernotes"), exports);
 __exportStar(require("./types/Usernote"), exports);
-__exportStar(require("./classes/Usernotes"), exports);
-__exportStar(require("./classes/ToolboxClient"), exports);
 // export * from './subConfig';

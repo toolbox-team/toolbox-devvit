@@ -86,7 +86,9 @@ exports.compressBlob = compressBlob;
  * @returns The original JSON value.
  */
 function decompressBlob(blob) {
-    return JSON.parse(pako_1.default.inflate(Buffer.from(blob, 'base64').toString('binary'), { to: 'string' }));
+    return JSON.parse(pako_1.default.inflate(Buffer.from(blob, 'base64').toString('binary'), {
+        to: 'string',
+    }));
 }
 exports.decompressBlob = decompressBlob;
 /**
@@ -110,8 +112,9 @@ function migrateUsernotesToLatestSchema(data) {
             // Timestamps need to be converted from milliseconds to seconds
             for (const user of Object.values(data.users)) {
                 for (const note of user.ns) {
-                    if (note.t)
+                    if (note.t) {
                         note.t /= 1000;
+                    }
                 }
             }
         // fallthrough to immediately bump to next version

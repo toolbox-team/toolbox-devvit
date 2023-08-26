@@ -1,6 +1,6 @@
 import { RedditAPIClient } from '@devvit/public-api';
-import { Usernotes } from './Usernotes';
 import { Usernote, UsernoteInit } from '../types/Usernote';
+import { Usernotes } from './Usernotes';
 /**
  * A client class for interfacing with Toolbox functionality and stored data
  * from within the Devvit platform. Wraps the Reddit API client provided in

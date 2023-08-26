@@ -40,7 +40,7 @@ Devvit.addMenuItem({
 			appearance: 'success',
 			text: 'Note added!',
 		});
-	}
+	},
 });
 
 export default Devvit;
