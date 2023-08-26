@@ -1,8 +1,3 @@
-// this is old and broken but i will fix it up soon i promise
-
-export const LATEST_KNOWN_CONFIG_SCHEMA = 1;
-export const EARLIEST_KNOWN_CONFIG_SCHEMA = 1;
-
 export interface RawSubredditConfig {
 	/** The schema version of the data */
 	ver: number;
@@ -68,14 +63,3 @@ export interface UsernoteType {
 	/** Displayed text of the note type */
 	text: string;
 }
-
-/** Default usernote types to use if subreddit config doesn't specify any */
-export const DEFAULT_USERNOTE_TYPES: readonly UsernoteType[] = [
-	{key: 'gooduser', color: 'green', text: 'Good Contributor'},
-	{key: 'spamwatch', color: 'fuchsia', text: 'Spam Watch'},
-	{key: 'spamwarn', color: 'purple', text: 'Spam Warning'},
-	{key: 'abusewarn', color: 'orange', text: 'Abuse Warning'},
-	{key: 'ban', color: 'red', text: 'Ban'},
-	{key: 'permban', color: 'darkred', text: 'Permanent Ban'},
-	{key: 'botban', color: 'black', text: 'Bot Ban'},
-];
