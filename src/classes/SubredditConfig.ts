@@ -4,6 +4,9 @@ import {
 } from '../helpers/config';
 import {RawSubredditConfig} from '../types/SubredditConfig';
 
+// type imports for doc references
+import type {Usernote} from '../types/Usernote';
+
 /** */
 export class SubredditConfig {
 	private data: RawSubredditConfig;
@@ -23,7 +26,21 @@ export class SubredditConfig {
 
 	/**
 	 * Returns the usernote type matching the given key. Useful for looking up
-	 * display information for a usernote.
+	 * display information for a usernote from {@linkcode Usernote.noteType}.
+	 *
+	 * @example Get the color and text of a note type from the key:
+	 * ```ts
+	 * const toolbox = new ToolboxClient(reddit);
+	 * const subreddit = 'mildlyinteresting';
+	 *
+	 * // Acquire a note somehow
+	 * const usernotes = toolbox.getUsernotes(subreddit);
+	 * const note = usernotes.get('eritbh')[0];
+	 *
+	 * // Look up information about the type of this note
+	 * const subConfig = toolbox.getConfig(subreddit);
+	 * const {color, text} = subConfig.getNoteType(note.noteType);
+	 * ```
 	 */
 	getNoteType (key: string) {
 		const noteTypes = this.getAllNoteTypes();
