@@ -2,13 +2,18 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SubredditConfig = void 0;
 const config_1 = require("../helpers/config");
-/** */
+/**
+ * A class that interfaces with the raw contents of a subreddit's `toolbox`
+ * wiki page, automatically handling schema checks and providing methods to read
+ * and modify subreddit configuration.
+ */
 class SubredditConfig {
     constructor(jsonString) {
         this.data = (0, config_1.migrateConfigToLatestSchema)(JSON.parse(jsonString));
     }
     /** Returns all usernote types. */
     getAllNoteTypes() {
+        // TODO: handle getFrom subreddits
         // If the config doesn't specify any note types, make a copy of the
         // default set and add them to the config so the unambiguous form will
         // be written back

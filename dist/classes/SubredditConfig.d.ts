@@ -1,5 +1,9 @@
 import { RawSubredditConfig, RawUsernoteType } from '../types/RawSubredditConfig';
-/** */
+/**
+ * A class that interfaces with the raw contents of a subreddit's `toolbox`
+ * wiki page, automatically handling schema checks and providing methods to read
+ * and modify subreddit configuration.
+ */
 export declare class SubredditConfig {
     private data;
     constructor(jsonString: string);
