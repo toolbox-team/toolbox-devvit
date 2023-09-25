@@ -68,7 +68,7 @@ export class SubredditConfig {
 	 * Stringifies the subreddit config data for writing back to the wiki.
 	 * @param indent Passed as the third argument of `JSON.stringify`. Useful
 	 * for debugging; however, because wiki space is limited, never provide this
-	 * parameter when actually saving notes to the wiki.
+	 * parameter when actually saving config to the wiki.
 	 * @returns JSON string which can be saved as the contents of the `toolbox`
 	 * wiki page
 	 */
