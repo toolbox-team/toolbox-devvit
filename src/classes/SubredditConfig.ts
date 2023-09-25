@@ -2,7 +2,7 @@ import {
 	DEFAULT_USERNOTE_TYPES,
 	migrateConfigToLatestSchema,
 } from '../helpers/config';
-import {RawSubredditConfig} from '../types/SubredditConfig';
+import {RawSubredditConfig} from '../types/RawSubredditConfig';
 
 // type imports for doc references
 import type {Usernote} from '../types/Usernote';
@@ -10,6 +10,7 @@ import type {Usernote} from '../types/Usernote';
 /** */
 export class SubredditConfig {
 	private data: RawSubredditConfig;
+
 	constructor (jsonString: string) {
 		this.data = migrateConfigToLatestSchema(JSON.parse(jsonString));
 	}

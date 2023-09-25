@@ -2,7 +2,7 @@ export interface RawSubredditConfig {
 	/** The schema version of the data */
 	ver: number;
 	/** Settings for domain tags */
-	domainTags: DomainTag[];
+	domainTags: RawDomainTag[];
 	/** Default settings for banning users via the mod button */
 	banMacros: {
 		/** The default mod-only ban note */
@@ -20,27 +20,27 @@ export interface RawSubredditConfig {
 		logtitle: unknown;
 		bantitle: unknown;
 		getfrom: unknown;
-		reasons: RemovalReason[];
+		reasons: RawRemovalReason[];
 	};
-	modMacros: ModMacro[];
-	usernoteColors: UsernoteType[];
+	modMacros: RawModMacro[];
+	usernoteColors: RawUsernoteType[];
 }
 
-export interface DomainTag {
+export interface RawDomainTag {
 	/** The domain to tag, e.g. "example.com" */
 	name: string;
 	/** A CSS color value */
 	color: string;
 }
 
-export interface RemovalReason {
+export interface RawRemovalReason {
 	title: string;
 	text: string;
 	flairText: string;
 	cssClass: string;
 }
 
-export interface ModMacro {
+export interface RawModMacro {
 	title: string;
 	text: string;
 	distinguish: boolean;
@@ -55,7 +55,7 @@ export interface ModMacro {
 }
 
 /** A single usernote type */
-export interface UsernoteType {
+export interface RawUsernoteType {
 	/** Key that this type is identified by, should never change once created */
 	key: string;
 	/** Color for this note type, as any valid CSS color string */

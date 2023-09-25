@@ -1,4 +1,4 @@
-import {RawSubredditConfig, UsernoteType} from '../types/SubredditConfig';
+import {RawSubredditConfig, RawUsernoteType} from '../types/RawSubredditConfig';
 
 /**
  * The latest subreddit config schema version that this library can handle. If a
@@ -15,7 +15,7 @@ export const LATEST_KNOWN_CONFIG_SCHEMA = 1;
 export const EARLIEST_KNOWN_CONFIG_SCHEMA = 1;
 
 /** Default usernote types used if subreddit config doesn't specify its own. */
-export const DEFAULT_USERNOTE_TYPES: readonly UsernoteType[] = [
+export const DEFAULT_USERNOTE_TYPES: readonly RawUsernoteType[] = [
 	{key: 'gooduser', color: 'green', text: 'Good Contributor'},
 	{key: 'spamwatch', color: 'fuchsia', text: 'Spam Watch'},
 	{key: 'spamwarn', color: 'purple', text: 'Spam Warning'},
