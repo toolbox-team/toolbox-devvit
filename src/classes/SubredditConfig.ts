@@ -7,7 +7,11 @@ import {RawSubredditConfig, RawUsernoteType} from '../types/RawSubredditConfig';
 // type imports for doc references
 import type {Usernote} from '../types/Usernote';
 
-/** */
+/**
+ * A class that interfaces with the raw contents of a subreddit's `toolbox`
+ * wiki page, automatically handling schema checks and providing methods to read
+ * and modify subreddit configuration.
+ */
 export class SubredditConfig {
 	private data: RawSubredditConfig;
 
@@ -17,6 +21,7 @@ export class SubredditConfig {
 
 	/** Returns all usernote types. */
 	getAllNoteTypes (): RawUsernoteType[] {
+		// TODO: handle getFrom subreddits
 		// If the config doesn't specify any note types, make a copy of the
 		// default set and add them to the config so the unambiguous form will
 		// be written back
