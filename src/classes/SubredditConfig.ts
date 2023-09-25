@@ -2,7 +2,7 @@ import {
 	DEFAULT_USERNOTE_TYPES,
 	migrateConfigToLatestSchema,
 } from '../helpers/config';
-import {RawSubredditConfig} from '../types/RawSubredditConfig';
+import {RawSubredditConfig, RawUsernoteType} from '../types/RawSubredditConfig';
 
 // type imports for doc references
 import type {Usernote} from '../types/Usernote';
@@ -16,13 +16,18 @@ export class SubredditConfig {
 	}
 
 	/** Returns all usernote types. */
-	getAllNoteTypes () {
-		let configuredTypes = this.data?.usernoteColors;
-		if (!configuredTypes || !configuredTypes.length) {
-			return DEFAULT_USERNOTE_TYPES;
+	getAllNoteTypes (): RawUsernoteType[] {
+		// If the config doesn't specify any note types, make a copy of the
+		// default set and add them to the config so the unambiguous form will
+		// be written back
+		if (!this.data.usernoteColors || !this.data.usernoteColors.length) {
+			const defaultTypes = DEFAULT_USERNOTE_TYPES.map(noteType => ({
+				...noteType,
+			}));
+			this.data.usernoteColors = defaultTypes;
 		}
 
-		return configuredTypes;
+		return this.data.usernoteColors;
 	}
 
 	/**
