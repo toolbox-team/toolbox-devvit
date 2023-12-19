@@ -13,7 +13,6 @@ class SubredditConfig {
     }
     /** Returns all usernote types. */
     getAllNoteTypes() {
-        // TODO: handle getFrom subreddits
         // If the config doesn't specify any note types, make a copy of the
         // default set and add them to the config so the unambiguous form will
         // be written back
