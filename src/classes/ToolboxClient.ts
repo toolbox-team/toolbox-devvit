@@ -1,9 +1,13 @@
 import {RedditAPIClient} from '@devvit/public-api';
 import {Usernote, UsernoteInit} from '../types/Usernote';
+import {SubredditConfig} from './SubredditConfig';
 import {Usernotes} from './Usernotes';
 
 /** The name of the wiki page where Toolbox stores usernotes. */
 const TB_USERNOTES_PAGE = 'usernotes';
+
+/** The name of the wiki page where Toolbox stores subreddit configuration. */
+const TB_CONFIG_PAGE = 'toolbox';
 
 /**
  * A client class for interfacing with Toolbox functionality and stored data
@@ -134,5 +138,11 @@ export class ToolboxClient {
 		const notes = await this.getUsernotes(subreddit);
 		notes.add(note as Usernote);
 		await this.writeUsernotes(subreddit, notes, reason);
+	}
+
+	/** */
+	async getConfig (subreddit: string) {
+		const page = await this.reddit.getWikiPage(subreddit, TB_CONFIG_PAGE);
+		return new SubredditConfig(page.content);
 	}
 }

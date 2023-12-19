@@ -1,3 +1,9 @@
+// type imports for doc links
+import type {
+	LATEST_KNOWN_USERNOTES_SCHEMA,
+	migrateUsernotesToLatestSchema,
+} from '../helpers/usernotes';
+
 /** Raw data for a single usernote */
 export interface RawUsernotesNote {
 	/** Timestamp (seconds since epoch) */
@@ -39,10 +45,11 @@ export interface RawUsernotesConstants {
  * Raw data stored as JSON on the `usernotes` wiki page.
  *
  * Note that while the library supports upgrading older schemas to the current
- * one (via {@linkcode migrateUsernotesToLatestSchema}), this type only applies
- * to schema version 6. If you are manually reading data from the wiki without
- * passing it through the migration function, and you read a different `ver`
- * value, this type will not describe that data.
+ * one (via {@linkcode migrateUsernotesToLatestSchema}), this type will only
+ * describe the latest known schema version. If you are manually reading data
+ * from the wiki without passing it through the migration function, and you read
+ * a `ver` value different than {@linkcode LATEST_KNOWN_USERNOTES_SCHEMA}, this
+ * type will not describe that data.
  */
 export interface RawUsernotes {
 	/** The version number of the usernotes schema this data conforms to */
