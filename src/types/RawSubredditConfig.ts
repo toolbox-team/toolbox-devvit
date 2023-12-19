@@ -1,6 +1,22 @@
+// type imports for doc links
+import type {
+	LATEST_KNOWN_CONFIG_SCHEMA,
+	migrateConfigToLatestSchema,
+} from '../helpers/config';
+
+/**
+ * Raw data stored as JSON on the `toolbox` wiki page.
+ *
+ * Note that while the library supports upgrading older schemas to the current
+ * one (via {@linkcode migrateConfigToLatestSchema}), this type will only
+ * describe the latest known schema version. If you are manually reading data
+ * from the wiki without passing it through the migration function, and you read
+ * a `ver` value different than {@linkcode LATEST_KNOWN_CONFIG_SCHEMA}, this
+ * type will not describe that data.
+ */
 export interface RawSubredditConfig {
-	/** The schema version of the data */
-	ver: number;
+	/** The version number of the config schema this data conforms to */
+	ver: 1;
 	/** Settings for individual domain tags */
 	domainTags: RawDomainTag[];
 	/** Default settings for banning users via the mod button */
