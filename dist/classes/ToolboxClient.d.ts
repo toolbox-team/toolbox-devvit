@@ -1,5 +1,6 @@
 import { RedditAPIClient } from '@devvit/public-api';
 import { Usernote, UsernoteInit } from '../types/Usernote';
+import { SubredditConfig } from './SubredditConfig';
 import { Usernotes } from './Usernotes';
 /**
  * A client class for interfacing with Toolbox functionality and stored data
@@ -86,4 +87,6 @@ export declare class ToolboxClient {
      * @returns Promise which resolves on success or rejects on error
      */
     addUsernote(subreddit: string, note: UsernoteInit, reason: string | undefined): Promise<void>;
+    /** */
+    getConfig(subreddit: string): Promise<SubredditConfig>;
 }

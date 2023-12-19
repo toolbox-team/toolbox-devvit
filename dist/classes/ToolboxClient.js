@@ -10,9 +10,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ToolboxClient = void 0;
+const SubredditConfig_1 = require("./SubredditConfig");
 const Usernotes_1 = require("./Usernotes");
 /** The name of the wiki page where Toolbox stores usernotes. */
 const TB_USERNOTES_PAGE = 'usernotes';
+/** The name of the wiki page where Toolbox stores subreddit configuration. */
+const TB_CONFIG_PAGE = 'toolbox';
 /**
  * A client class for interfacing with Toolbox functionality and stored data
  * from within the Devvit platform. Wraps the Reddit API client provided in
@@ -131,6 +134,13 @@ class ToolboxClient {
             const notes = yield this.getUsernotes(subreddit);
             notes.add(note);
             yield this.writeUsernotes(subreddit, notes, reason);
+        });
+    }
+    /** */
+    getConfig(subreddit) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const page = yield this.reddit.getWikiPage(subreddit, TB_CONFIG_PAGE);
+            return new SubredditConfig_1.SubredditConfig(page.content);
         });
     }
 }
