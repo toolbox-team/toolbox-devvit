@@ -9,10 +9,6 @@ import {
 import {RawUsernotes, RawUsernotesConstants} from '../types/RawUsernotes';
 import {Usernote} from '../types/Usernote';
 
-// TODO: nothing here handles username case correctly; go back and check the
-//       toolbox implementation of that for correctness later and write test
-//       cases for it
-
 /**
  * A class that interfaces with the raw contents of a subreddit's `usernotes`
  * wiki page, automatically upgrading old storage schemas to the current version
