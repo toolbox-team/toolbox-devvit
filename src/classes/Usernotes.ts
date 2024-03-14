@@ -19,7 +19,12 @@ export class Usernotes {
 	/** A mapping of usernames to notes on the given user. */
 	private users = new Map<string, Usernote[]>();
 
-	constructor (jsonString: string) {
+	constructor (jsonString?: string) {
+		// if we have no data to start with, we start fresh
+		if (!jsonString) {
+			return;
+		}
+
 		let data = migrateUsernotesToLatestSchema(JSON.parse(jsonString));
 		const rawUsers = decompressBlob(data.blob);
 
