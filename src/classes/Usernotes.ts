@@ -9,10 +9,6 @@ import {
 import {RawUsernotes, RawUsernotesConstants} from '../types/RawUsernotes';
 import {Usernote} from '../types/Usernote';
 
-// TODO: nothing here handles username case correctly; go back and check the
-//       toolbox implementation of that for correctness later and write test
-//       cases for it
-
 /**
  * A class that interfaces with the raw contents of a subreddit's `usernotes`
  * wiki page, automatically upgrading old storage schemas to the current version
@@ -23,7 +19,12 @@ export class Usernotes {
 	/** A mapping of usernames to notes on the given user. */
 	private users = new Map<string, Usernote[]>();
 
-	constructor (jsonString: string) {
+	constructor (jsonString?: string) {
+		// if we have no data to start with, we start fresh
+		if (!jsonString) {
+			return;
+		}
+
 		let data = migrateUsernotesToLatestSchema(JSON.parse(jsonString));
 		const rawUsers = decompressBlob(data.blob);
 

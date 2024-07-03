@@ -3,7 +3,19 @@ import {compressBlob, decompressBlob} from '../helpers/usernotes';
 import type {RawUsernotes} from '../types/RawUsernotes';
 import {Usernotes} from './Usernotes';
 
-test.todo('constructor');
+test('constructor: accept empty input', t => {
+	t.assert(
+		new Usernotes() instanceof Usernotes,
+		'passing nothing to Usernotes constructor should return a Usernotes instance',
+	);
+
+	t.assert(
+		new Usernotes('') instanceof Usernotes,
+		'passing empty string to Usernotes constructor should return a Usernotes instance',
+	);
+});
+
+test.todo('constructor: most other things');
 
 test.todo('get: most other things');
 
