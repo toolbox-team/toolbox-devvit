@@ -1,4 +1,4 @@
-import {RedditAPIClient} from '@devvit/public-api';
+import {RedditAPIClient, WikiPage} from '@devvit/public-api';
 import {Usernote, UsernoteInit} from '../types/Usernote';
 import {SubredditConfig} from './SubredditConfig';
 import {Usernotes} from './Usernotes';
@@ -140,9 +140,17 @@ export class ToolboxClient {
 		await this.writeUsernotes(subreddit, notes, reason);
 	}
 
-	/** */
+	/**
+	 * Retrieves toolbox configuration for a subreddit.
+	 * @param subreddit Name of the subreddit to retrieve config for
+	 */
 	async getConfig (subreddit: string) {
-		const page = await this.reddit.getWikiPage(subreddit, TB_CONFIG_PAGE);
-		return new SubredditConfig(page.content);
+		let page: WikiPage | undefined;
+		try {
+			page = await this.reddit.getWikiPage(subreddit, TB_CONFIG_PAGE);
+		} catch {
+			// Devvit throws an error when page is not present. Allow page to remain undefined.
+		}
+		return new SubredditConfig(page?.content);
 	}
 }
