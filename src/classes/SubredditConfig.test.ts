@@ -25,14 +25,15 @@ test('constructor: results of passing in nothing and empty input are identical',
 	);
 });
 
-test('constructor: on empty input, each element other than ver is falsy', t => {
+test('constructor: on empty input, each element other than ver is an empty string', t => {
 	const config = new SubredditConfig();
 	const configAsJson = config.toJSON();
 
 	for (const configItem in configAsJson) {
 		if (configItem !== 'ver') {
-			t.falsy(
+			t.is(
 				configAsJson[configItem],
+                '',
 				`expected ${configItem} to be falsy when passing nothing to SubredditConfig constructor`,
 			);
 		}
