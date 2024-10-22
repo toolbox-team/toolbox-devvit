@@ -33,7 +33,7 @@ test('constructor: on empty input, each element other than ver is an empty strin
 		if (configItem !== 'ver') {
 			t.is(
 				configAsJson[configItem],
-                '',
+				'',
 				`expected ${configItem} to be falsy when passing nothing to SubredditConfig constructor`,
 			);
 		}

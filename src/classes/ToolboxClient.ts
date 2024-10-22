@@ -149,7 +149,7 @@ export class ToolboxClient {
 		try {
 			page = await this.reddit.getWikiPage(subreddit, TB_CONFIG_PAGE);
 		} catch (error) {
-			// Devvit throws an error when page is not present. 
+			// Devvit throws an error when page is not present.
 			// Check to see if page is actually absent, if it is present then
 			// rethrow error.
 			const allPages = await this.reddit.getWikiPages(subreddit);
