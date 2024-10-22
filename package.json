@@ -3,6 +3,7 @@
 	"version": "0.3.1",
 	"description": "Helpers for working with /r/toolbox data from Devvit community apps.",
 	"main": "dist/index.js",
+	"type": "module",
 	"types": "dist/index.d.ts",
 	"files": [
 		"dist/*"
@@ -29,6 +30,7 @@
 		"ava": "^5.3.0",
 		"dprint": "^0.40.2",
 		"eslint": "^6.8.0",
+		"esm": "^3.2.25",
 		"nyc": "^15.0.0",
 		"tsx": "^3.12.7",
 		"typedoc": "^0.24.8",

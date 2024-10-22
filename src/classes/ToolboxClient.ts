@@ -148,8 +148,14 @@ export class ToolboxClient {
 		let page: WikiPage | undefined;
 		try {
 			page = await this.reddit.getWikiPage(subreddit, TB_CONFIG_PAGE);
-		} catch {
-			// Devvit throws an error when page is not present. Allow page to remain undefined.
+		} catch (error) {
+			// Devvit throws an error when page is not present. 
+			// Check to see if page is actually absent, if it is present then
+			// rethrow error.
+			const allPages = await this.reddit.getWikiPages(subreddit);
+			if (allPages.includes(TB_CONFIG_PAGE)) {
+				throw error;
+			}
 		}
 		return new SubredditConfig(page?.content);
 	}
