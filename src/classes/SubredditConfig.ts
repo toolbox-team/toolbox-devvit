@@ -21,7 +21,7 @@ export class SubredditConfig {
 			this.data = migrateConfigToLatestSchema(JSON.parse(jsonString));
 		} else {
 			// TODO: the default config value isn't actually typed correctly, this needs to be cleaned up eventually
-			this.data = DEFAULT_CONFIG as RawSubredditConfig;
+			this.data = DEFAULT_CONFIG as unknown as RawSubredditConfig;
 		}
 	}
 
