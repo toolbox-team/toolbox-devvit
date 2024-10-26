@@ -25,9 +25,10 @@ export const DEFAULT_USERNOTE_TYPES: readonly RawUsernoteType[] = [
 	{key: 'botban', color: 'black', text: 'Bot Ban'},
 ];
 
-/** Default subreddit configuration to use if subreddit doesnt have one.
- *  Empty strings are used in the default config by the plugin even though
- *  this doesn't match the type exactly.
+/**
+ * Default subreddit configuration to use if subreddit doesnt have one.
+ * Empty strings are used in the default config by the plugin even though
+ * this doesn't match the type exactly.
  */
 export const DEFAULT_CONFIG = {
 	ver: LATEST_KNOWN_CONFIG_SCHEMA,
