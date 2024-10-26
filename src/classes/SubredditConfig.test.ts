@@ -1,5 +1,5 @@
 import test from 'ava';
-import {LATEST_KNOWN_CONFIG_SCHEMA} from '../helpers/config';
+import {DEFAULT_CONFIG, LATEST_KNOWN_CONFIG_SCHEMA} from '../helpers/config';
 import {SubredditConfig} from './SubredditConfig';
 
 test('constructor: accept empty input', t => {
@@ -25,25 +25,11 @@ test('constructor: results of passing in nothing and empty input are identical',
 	);
 });
 
-test('constructor: on empty input, each element other than ver is an empty string', t => {
+test('constructor: on empty input, the default config is returned', t => {
 	const config = new SubredditConfig();
 	const configAsJson = config.toJSON();
 
-	for (const configItem in configAsJson) {
-		if (configItem !== 'ver') {
-			t.is(
-				configAsJson[configItem],
-				'',
-				`expected ${configItem} to be falsy when passing nothing to SubredditConfig constructor`,
-			);
-		}
-	}
-
-	t.is(
-		configAsJson.ver,
-		LATEST_KNOWN_CONFIG_SCHEMA,
-		'passing nothing to SubredditConfig should result in an empty config at the latest version',
-	);
+	t.deepEqual(configAsJson, DEFAULT_CONFIG);
 });
 
 test.todo('getAllNoteTypes');
