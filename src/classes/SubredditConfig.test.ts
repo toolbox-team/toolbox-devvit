@@ -1,5 +1,5 @@
 import test from 'ava';
-import {DEFAULT_CONFIG, LATEST_KNOWN_CONFIG_SCHEMA} from '../helpers/config';
+import {DEFAULT_CONFIG} from '../helpers/config';
 import {SubredditConfig} from './SubredditConfig';
 
 test('constructor: accept empty input', t => {
@@ -29,7 +29,7 @@ test('constructor: on empty input, the default config is returned', t => {
 	const config = new SubredditConfig();
 	const configAsJson = config.toJSON();
 
-	t.deepEqual(configAsJson, DEFAULT_CONFIG);
+	t.deepEqual(configAsJson, DEFAULT_CONFIG, "SubredditConfig initiated with nothing should return default config");
 });
 
 test.todo('getAllNoteTypes');
