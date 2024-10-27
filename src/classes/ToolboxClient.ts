@@ -149,9 +149,10 @@ export class ToolboxClient {
 		try {
 			page = await this.reddit.getWikiPage(subreddit, TB_CONFIG_PAGE);
 		} catch (error) {
-			// Devvit throws an error when page is not present.
-			// Check to see if page is actually absent, if it is present then
-			// rethrow error.
+			// Devvit throws an error when page is not present, but also
+			// sometimes for other reasons. Check if the page actually
+			// exists; if it doesn't we'll use the default config, but if it
+			// does then something else is wrong and we'll rethrow the error.
 			const allPages = await this.reddit.getWikiPages(subreddit);
 			if (allPages.includes(TB_CONFIG_PAGE)) {
 				throw error;
