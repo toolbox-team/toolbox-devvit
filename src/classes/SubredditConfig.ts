@@ -1,4 +1,5 @@
 import {
+	DEFAULT_CONFIG,
 	DEFAULT_USERNOTE_TYPES,
 	migrateConfigToLatestSchema,
 } from '../helpers/config';
@@ -15,8 +16,13 @@ import type {Usernote} from '../types/Usernote';
 export class SubredditConfig {
 	private data: RawSubredditConfig;
 
-	constructor (jsonString: string) {
-		this.data = migrateConfigToLatestSchema(JSON.parse(jsonString));
+	constructor (jsonString?: string) {
+		if (jsonString) {
+			this.data = migrateConfigToLatestSchema(JSON.parse(jsonString));
+		} else {
+			// TODO: the default config value isn't actually typed correctly, this needs to be cleaned up eventually
+			this.data = DEFAULT_CONFIG as unknown as RawSubredditConfig;
+		}
 	}
 
 	/** Returns all usernote types. */

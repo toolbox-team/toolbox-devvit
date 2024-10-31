@@ -26,6 +26,20 @@ export const DEFAULT_USERNOTE_TYPES: readonly RawUsernoteType[] = [
 ];
 
 /**
+ * Default subreddit configuration to use if subreddit doesnt have one.
+ * Empty strings are used in the default config by the plugin even though
+ * this doesn't match the type exactly.
+ */
+export const DEFAULT_CONFIG = {
+	ver: LATEST_KNOWN_CONFIG_SCHEMA,
+	domainTags: '',
+	removalReasons: '',
+	modMacros: '',
+	usernoteColors: '',
+	banMacros: '',
+};
+
+/**
  * Checks the schema version of raw subreddit config data and attempts to update
  * it to the latest known schema version if it's out of date. Throws an error if
  * the data's current schema version is too old or new to handle.
