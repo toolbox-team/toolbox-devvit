@@ -2,6 +2,7 @@
 	"name": "toolbox-devvit",
 	"version": "0.3.2",
 	"description": "Helpers for working with /r/toolbox data from Devvit community apps.",
+	"type": "module",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"files": [
@@ -25,6 +26,7 @@
 	"devDependencies": {
 		"@ava/typescript": "^4.0.0",
 		"@devvit/public-api": "^0.11.2",
+		"@tsconfig/node-lts": "^22.0.1",
 		"@types/node": "^13.7.4",
 		"ava": "^5.3.0",
 		"dprint": "^0.40.2",

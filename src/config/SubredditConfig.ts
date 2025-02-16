@@ -2,11 +2,11 @@ import {
 	DEFAULT_CONFIG,
 	DEFAULT_USERNOTE_TYPES,
 	migrateConfigToLatestSchema,
-} from './config';
-import {RawSubredditConfig, RawUsernoteType} from './RawSubredditConfig';
+} from './config.js';
+import {RawSubredditConfig, RawUsernoteType} from './RawSubredditConfig.js';
 
 // type imports for doc references
-import type {Usernote} from '../usernotes/Usernote';
+import type {Usernote} from '../usernotes/Usernote.js';
 
 /**
  * A class that interfaces with the raw contents of a subreddit's `toolbox`

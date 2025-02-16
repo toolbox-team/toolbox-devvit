@@ -2,7 +2,7 @@
 import type {
 	LATEST_KNOWN_CONFIG_SCHEMA,
 	migrateConfigToLatestSchema,
-} from './config';
+} from './config.js';
 
 /**
  * Raw data stored as JSON on the `toolbox` wiki page.

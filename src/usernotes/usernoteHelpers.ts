@@ -3,7 +3,7 @@ import {
 	RawUsernotes,
 	RawUsernotesBlob,
 	RawUsernotesUsers,
-} from './RawUsernotes';
+} from './RawUsernotes.js';
 
 /**
  * The latest usernotes schema version that this library can handle. If a

@@ -1,6 +1,6 @@
 // type imports for doc references
-import type {SubredditConfig} from '../config/SubredditConfig';
-import type {ToolboxClient} from '../ToolboxClient';
+import type {SubredditConfig} from '../config/SubredditConfig.js';
+import type {ToolboxClient} from '../ToolboxClient.js';
 
 /** Details about a newly created usernote */
 export interface UsernoteInit {

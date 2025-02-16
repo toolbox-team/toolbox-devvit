@@ -1,12 +1,9 @@
 {
+	"extends": "@tsconfig/node-lts/tsconfig.json",
 	"compilerOptions": {
-		"target": "es6",
-		"module": "commonjs",
-		"moduleResolution": "node",
-		"resolveJsonModule": true,
-		"esModuleInterop": true,
 		"outDir": "./dist",
 		"declaration": true,
+
 		"noImplicitAny": false,
 		"strictNullChecks": true,
 		"strict": true,
