@@ -2,8 +2,9 @@ import {
 	DEFAULT_CONFIG,
 	DEFAULT_USERNOTE_TYPES,
 	migrateConfigToLatestSchema,
-} from './config.js';
-import {RawSubredditConfig, RawUsernoteType} from './RawSubredditConfig.js';
+	RawSubredditConfig,
+	RawUsernoteType,
+} from './RawSubredditConfig.js';
 
 // type imports for doc references
 import type {Usernote} from '../usernotes/Usernote.js';

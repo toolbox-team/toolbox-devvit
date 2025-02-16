@@ -1,5 +1,5 @@
 import test from 'ava';
-import {DEFAULT_CONFIG} from './config';
+import {DEFAULT_CONFIG} from './RawSubredditConfig';
 import {SubredditConfig} from './SubredditConfig';
 
 test('constructor: accept empty input', t => {
