@@ -2,7 +2,7 @@
 import type {
 	LATEST_KNOWN_USERNOTES_SCHEMA,
 	migrateUsernotesToLatestSchema,
-} from '../helpers/usernotes';
+} from './usernoteHelpers';
 
 /** Raw data for a single usernote */
 export interface RawUsernotesNote {

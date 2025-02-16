@@ -1,6 +1,6 @@
 import test from 'ava';
-import {compressBlob, decompressBlob} from '../helpers/usernotes';
-import type {RawUsernotes} from '../types/RawUsernotes';
+import type {RawUsernotes} from './RawUsernotes';
+import {compressBlob, decompressBlob} from './usernoteHelpers';
 import {Usernotes} from './Usernotes';
 
 test('constructor: accept empty input', t => {

@@ -1,3 +1,5 @@
+import {RawUsernotes, RawUsernotesConstants} from './RawUsernotes';
+import {Usernote} from './Usernote';
 import {
 	compressBlob,
 	decompressBlob,
@@ -5,9 +7,7 @@ import {
 	LATEST_KNOWN_USERNOTES_SCHEMA,
 	migrateUsernotesToLatestSchema,
 	squashPermalink,
-} from '../helpers/usernotes';
-import {RawUsernotes, RawUsernotesConstants} from '../types/RawUsernotes';
-import {Usernote} from '../types/Usernote';
+} from './usernoteHelpers';
 
 /**
  * A class that interfaces with the raw contents of a subreddit's `usernotes`

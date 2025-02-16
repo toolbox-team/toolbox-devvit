@@ -1,4 +1,4 @@
-import {RawSubredditConfig, RawUsernoteType} from '../types/RawSubredditConfig';
+import {RawSubredditConfig, RawUsernoteType} from './RawSubredditConfig';
 
 /**
  * The latest subreddit config schema version that this library can handle. If a

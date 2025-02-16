@@ -1,6 +1,6 @@
-export * from './classes/ToolboxClient';
-export * from './classes/Usernotes';
-export * from './helpers/usernotes';
-export * from './types/RawUsernotes';
-export * from './types/Usernote';
+export * from './ToolboxClient';
+export * from './usernotes/RawUsernotes';
+export * from './usernotes/Usernote';
+export * from './usernotes/usernoteHelpers';
+export * from './usernotes/Usernotes';
 // export * from './subConfig';
