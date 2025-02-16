@@ -4,7 +4,7 @@ import {
 	expandPermalink,
 	migrateUsernotesToLatestSchema,
 	squashPermalink,
-} from './usernoteHelpers';
+} from './RawUsernotes';
 
 test('squashPermalink', t => {
 	for (
