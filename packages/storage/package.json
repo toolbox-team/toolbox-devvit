@@ -1,10 +1,13 @@
 {
-	"name": "toolbox-devvit",
-	"version": "0.3.2",
-	"description": "Helpers for working with /r/toolbox data from Devvit community apps.",
+	"name": "@toolbox-team/storage",
+	"version": "0.0.1-terrible-do-not-use",
+	"description": "Helpers for working with Toolbox's data storage formats.",
 	"type": "module",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"files": [
+		"dist/*"
+	],
 	"scripts": {
 		"fmt": "dprint fmt",
 		"build": "tsc",
@@ -21,7 +24,7 @@
 	},
 	"homepage": "https://github.com/toolbox-team/toolbox-devvit#readme",
 	"dependencies": {
-		"@toolbox-team/storage": "^0.0.1-terrible-do-not-use"
+		"pako": "^1.0.11"
 	},
 	"ava": {
 		"typescript": {

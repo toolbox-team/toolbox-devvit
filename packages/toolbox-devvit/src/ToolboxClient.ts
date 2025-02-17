@@ -1,7 +1,10 @@
 import {RedditAPIClient, WikiPage} from '@devvit/public-api';
-import {SubredditConfig} from './config/SubredditConfig.js';
-import {Usernote, UsernoteInit} from './usernotes/Usernote.js';
-import {Usernotes} from './usernotes/Usernotes.js';
+import {
+	SubredditConfig,
+	Usernote,
+	UsernoteInit,
+	Usernotes,
+} from '@toolbox-team/storage';
 
 /** The name of the wiki page where Toolbox stores usernotes. */
 const TB_USERNOTES_PAGE = 'usernotes';

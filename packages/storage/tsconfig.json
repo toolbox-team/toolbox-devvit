@@ -1,0 +1,17 @@
+{
+	"extends": "@tsconfig/node-lts/tsconfig.json",
+	"compilerOptions": {
+		"outDir": "./dist",
+		"declaration": true,
+
+		"noImplicitAny": false,
+		"strictNullChecks": true,
+		"strict": true,
+
+		// devvit types do not like being observed in this context
+		"skipLibCheck": true
+	},
+	"include": [
+		"src"
+	]
+}
