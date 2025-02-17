@@ -1,6 +1,6 @@
 import test from 'ava';
-import {DEFAULT_CONFIG} from './RawSubredditConfig';
-import {SubredditConfig} from './SubredditConfig';
+import {DEFAULT_CONFIG} from './RawSubredditConfig.js';
+import {SubredditConfig} from './SubredditConfig.js';
 
 test('constructor: accept empty input', t => {
 	t.assert(

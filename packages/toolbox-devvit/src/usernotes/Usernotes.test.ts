@@ -1,7 +1,7 @@
 import test from 'ava';
 
-import {compressBlob, decompressBlob, RawUsernotes} from './RawUsernotes';
-import {Usernotes} from './Usernotes';
+import {compressBlob, decompressBlob, RawUsernotes} from './RawUsernotes.js';
+import {Usernotes} from './Usernotes.js';
 
 test('constructor: accept empty input', t => {
 	t.assert(
