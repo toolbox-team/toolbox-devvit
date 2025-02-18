@@ -29,9 +29,8 @@ Each package defines several scripts for itself, which include:
 
 - `fmt` formats the package's source code.
 - `fmt:check` checks the format without making any changes to files.
-- `build` compiles the package.
-- `test` compiles and runs the package's tests.
-- `test:watch` re-runs tests whenever files are changed.
+- `build` compiles the package and its tests.
+- `test` runs the package's tests. Make sure you run `build` first.
 - `coverage` compiles and runs tests and generates a test coverage report.
 
 Each of these scripts can be run in two ways:
@@ -47,6 +46,9 @@ These scripts are defined in the root `package.json` rather than in the
 `package.json` of each individual package and are mostly used for CI/release
 purposes. Run them with `npm run <script>` in the root directory.
 
+- `build:all` builds all packages at once. This is functionally identical to
+  running the individual package `build` scripts, but avoids invoking Typescript
+  multiple times which makes it faster.
 - `docs` generates API documentation for all packages at once, combining it
   into a single folder for all packages which can be uploaded to Github Pages.
 

@@ -1,8 +1,9 @@
 {
 	"extends": "@tsconfig/node-lts/tsconfig.json",
 	"compilerOptions": {
+		"rootDir": "./src",
 		"outDir": "./dist",
-		"declaration": true,
+		"composite": true,
 
 		"noImplicitAny": false,
 		"strictNullChecks": true,
@@ -12,6 +13,9 @@
 		"skipLibCheck": true
 	},
 	"include": [
-		"src"
+		"./src"
+	],
+	"references": [
+		{ "path": "../storage" }
 	]
 }
