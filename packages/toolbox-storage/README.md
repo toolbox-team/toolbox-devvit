@@ -7,7 +7,3 @@ Helpers for working with /r/toolbox wiki data formats. [Read the API documentati
 ```bash
 npm install --production toolbox-storage
 ```
-
-## Usage Examples
-
-TODO
