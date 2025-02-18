@@ -13,7 +13,6 @@
 		"build": "tsc",
 		"test": "ava",
 		"coverage": "nyc ava",
-		"docs": "typedoc src/index.ts",
 		"prepublishOnly": "tsc && ava"
 	},
 	"repository": "https://github.com/toolbox-team/toolbox-devvit.git",
@@ -33,7 +32,6 @@
 		"dprint": "^0.40.2",
 		"eslint": "^6.8.0",
 		"nyc": "^15.0.0",
-		"typedoc": "^0.24.8",
 		"typescript": "^5.1.3"
 	},
 	"ava": {
@@ -43,5 +41,8 @@
 				"src/": "dist/"
 			}
 		}
+	},
+	"typedocOptions": {
+		"entryPoints": ["src/index.ts"]
 	}
 }
