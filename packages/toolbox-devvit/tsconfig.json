@@ -16,6 +16,6 @@
 		"./src"
 	],
 	"references": [
-		{ "path": "../storage" }
+		{ "path": "../toolbox-storage" }
 	]
 }

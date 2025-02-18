@@ -6,7 +6,7 @@ A collection of packages for working with /r/toolbox data.
 
 See the README in each package for more information.
 
-### [`@toolbox-team/storage`](/packages/storage/) [![npm version](https://img.shields.io/npm/v/@toolbox-team/storage.svg)](https://www.npmjs.com/package/@toolbox-team/storage)
+### [`toolbox-storage`](/packages/toolbox-storage/) [![npm version](https://img.shields.io/npm/v/toolbox-storage.svg)](https://www.npmjs.com/package/toolbox-storage)
 
 Defines basic helpers classes for reading and manipulating the storage formats.
 This package includes no data fetching/API helpers; you'll have to read to/write

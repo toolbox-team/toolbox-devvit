@@ -1,6 +1,6 @@
 {
 	"references": [
-		{ "path": "packages/storage" },
+		{ "path": "packages/toolbox-storage" },
 		{ "path": "packages/toolbox-devvit" }
 	],
 	"files": []

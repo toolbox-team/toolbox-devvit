@@ -4,7 +4,7 @@ import {
 	Usernote,
 	UsernoteInit,
 	Usernotes,
-} from '@toolbox-team/storage';
+} from 'toolbox-storage';
 
 /** The name of the wiki page where Toolbox stores usernotes. */
 const TB_USERNOTES_PAGE = 'usernotes';
