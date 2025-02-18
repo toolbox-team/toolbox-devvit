@@ -1,6 +1,6 @@
 {
 	"name": "toolbox-storage",
-	"version": "0.0.1-terrible-do-not-use",
+	"version": "1.0.0",
 	"description": "Helpers for working with Toolbox's data storage formats.",
 	"type": "module",
 	"main": "dist/index.js",

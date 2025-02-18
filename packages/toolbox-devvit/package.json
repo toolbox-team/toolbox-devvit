@@ -1,6 +1,6 @@
 {
 	"name": "toolbox-devvit",
-	"version": "0.3.2",
+	"version": "0.4.0",
 	"description": "Helpers for working with /r/toolbox data from Devvit community apps.",
 	"type": "module",
 	"main": "dist/index.js",
@@ -21,7 +21,7 @@
 	},
 	"homepage": "https://github.com/toolbox-team/toolbox-devvit#readme",
 	"dependencies": {
-		"toolbox-storage": "^0.0.1-terrible-do-not-use"
+		"toolbox-storage": "^1.0.0"
 	},
 	"devDependencies": {
 		"@ava/typescript": "^5.0.0",
