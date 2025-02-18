@@ -16,13 +16,15 @@
 		"coverage": "nyc ava",
 		"prepublishOnly": "dprint check && tsc -b && ava"
 	},
-	"repository": "https://github.com/toolbox-team/toolbox-devvit.git",
+	"repository": {
+		"url": "git+https://github.com/toolbox-team/storage.git"
+	},
 	"author": "eritbh <github@eritbh.me>",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/toolbox-team/toolbox-devvit/issues"
+		"url": "https://github.com/toolbox-team/storage/issues"
 	},
-	"homepage": "https://github.com/toolbox-team/toolbox-devvit#readme",
+	"homepage": "https://github.com/toolbox-team/storage/tree/main/packages/toolbox-storage#readme",
 	"dependencies": {
 		"pako": "^1.0.11"
 	},

@@ -1,6 +1,6 @@
 # toolbox-storage
 
-Helpers for working with /r/toolbox wiki data formats. [Read the API documentation.](https://toolbox-team.github.io/storage/modules/storage.html)
+Helpers for working with /r/toolbox wiki data formats. [Read the API documentation.](https://toolbox-team.github.io/storage/modules/toolbox-storage.html)
 
 ## Installation
 

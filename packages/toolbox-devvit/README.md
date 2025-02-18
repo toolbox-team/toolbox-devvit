@@ -1,6 +1,6 @@
 # toolbox-devvit
 
-Helpers for working with /r/toolbox data from Devvit community apps. [Read the documentation.](https://toolbox-team.github.io/toolbox-devvit/)
+Helpers for working with /r/toolbox data from Devvit community apps. [Read the documentation.](https://toolbox-team.github.io/storage/modules/toolbox-devvit.html)
 
 ## Installation
 
