@@ -8,5 +8,5 @@ jobs:
     - uses: actions/checkout@v1
     - run: npm ci
     - run: npm run fmt:check --workspaces
-    - run: npm run build --workspaces
+    - run: npm run build:all
     - run: npm run test --workspaces
