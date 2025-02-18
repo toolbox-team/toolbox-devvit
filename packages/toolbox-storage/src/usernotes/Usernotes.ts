@@ -4,10 +4,11 @@ import {
 	expandPermalink,
 	LATEST_KNOWN_USERNOTES_SCHEMA,
 	migrateUsernotesToLatestSchema,
+	RawUsernotes,
+	RawUsernotesConstants,
 	squashPermalink,
-} from '../helpers/usernotes';
-import {RawUsernotes, RawUsernotesConstants} from '../types/RawUsernotes';
-import {Usernote} from '../types/Usernote';
+} from './RawUsernotes.js';
+import {Usernote} from './Usernote.js';
 
 /**
  * A class that interfaces with the raw contents of a subreddit's `usernotes`

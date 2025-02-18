@@ -1,5 +1,5 @@
 import test from 'ava';
-import {ToolboxClient} from './ToolboxClient';
+import {ToolboxClient} from './ToolboxClient.js';
 
 test.todo('getUsernotes');
 

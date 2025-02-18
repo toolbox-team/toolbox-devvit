@@ -1,23 +1,7 @@
 {
-	"compilerOptions": {
-		"target": "es6",
-		"module": "commonjs",
-		"moduleResolution": "node",
-		"resolveJsonModule": true,
-		"esModuleInterop": true,
-		"outDir": "./dist",
-		"declaration": true,
-		"noImplicitAny": false,
-		"strictNullChecks": true,
-		"strict": true,
-
-		// devvit types do not like being observed in this context
-		"skipLibCheck": true
-	},
-	"include": [
-		"src"
+	"references": [
+		{ "path": "packages/toolbox-storage" },
+		{ "path": "packages/toolbox-devvit" }
 	],
-	"exclude": [
-		"src/**/*.test.ts"
-	]
+	"files": []
 }

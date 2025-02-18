@@ -1,0 +1,48 @@
+{
+	"name": "toolbox-devvit",
+	"version": "0.3.2",
+	"description": "Helpers for working with /r/toolbox data from Devvit community apps.",
+	"type": "module",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"fmt": "dprint fmt",
+		"fmt:check": "dprint check",
+		"build": "tsc -b",
+		"test": "ava",
+		"coverage": "nyc ava",
+		"prepublishOnly": "dprint check && tsc -b && ava"
+	},
+	"repository": "https://github.com/toolbox-team/toolbox-devvit.git",
+	"author": "eritbh <github@eritbh.me>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/toolbox-team/toolbox-devvit/issues"
+	},
+	"homepage": "https://github.com/toolbox-team/toolbox-devvit#readme",
+	"dependencies": {
+		"toolbox-storage": "^0.0.1-terrible-do-not-use"
+	},
+	"devDependencies": {
+		"@ava/typescript": "^5.0.0",
+		"@devvit/public-api": "^0.11.2",
+		"@tsconfig/node-lts": "^22.0.1",
+		"@types/node": "^13.7.4",
+		"ava": "^6.2.0",
+		"dprint": "^0.40.2",
+		"nyc": "^15.0.0"
+	},
+	"ava": {
+		"typescript": {
+			"compile": false,
+			"rewritePaths": {
+				"src/": "dist/"
+			}
+		}
+	},
+	"typedocOptions": {
+		"entryPoints": [
+			"src/index.ts"
+		]
+	}
+}
