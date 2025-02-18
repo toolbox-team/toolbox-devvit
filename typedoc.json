@@ -1,4 +1,7 @@
 {
 	"entryPoints": ["packages/*"],
-	"entryPointStrategy": "packages"
+	"entryPointStrategy": "packages",
+	"packageOptions": {
+		"includeVersion": true
+	}
 }
