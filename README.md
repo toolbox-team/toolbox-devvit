@@ -28,8 +28,10 @@ root directory in order to install dependencies for all packages and create
 Each package defines several scripts for itself, which include:
 
 - `fmt` formats the package's source code.
+- `fmt:check` checks the format without making any changes to files.
 - `build` compiles the package.
 - `test` compiles and runs the package's tests.
+- `test:watch` re-runs tests whenever files are changed.
 - `coverage` compiles and runs tests and generates a test coverage report.
 
 Each of these scripts can be run in two ways:

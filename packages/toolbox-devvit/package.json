@@ -7,10 +7,12 @@
 	"types": "dist/index.d.ts",
 	"scripts": {
 		"fmt": "dprint fmt",
+		"fmt:check": "dprint check",
 		"build": "tsc",
 		"test": "ava",
+		"test:watch": "ava --watch",
 		"coverage": "nyc ava",
-		"prepublishOnly": "tsc && ava"
+		"prepublishOnly": "dprint check && tsc && ava"
 	},
 	"repository": "https://github.com/toolbox-team/toolbox-devvit.git",
 	"author": "eritbh <github@eritbh.me>",
